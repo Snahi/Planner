@@ -5,6 +5,18 @@
     --top_bar_height:           40px;
     --table_header_height:      60px;
     --categories_width:         20%;
+    --top_menu_item_padding:    10px;
+
+    /* colors */
+    --bright_color:                 #14FFEC;
+    --blue:                         #0D7377;
+    --logo_color:                   var(--blue);
+    --top_bar_bg_color:             #212121;
+    --table_header_bg_color:        #333333;
+    --categories_color:             var(--top_bar_bg_color);
+    --top_menu_item_color:          #0D7377;
+    --top_menu_item_hov_bg_color:   var(--table_header_bg_color);
+    --top_menu_item_hov_color:      var(--bright_color);
 }
 
 
@@ -20,18 +32,73 @@ body {
 }
 
 
+/* top bar ///////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
 #top_bar {
     width:              100%;
     height:             var(--top_bar_height);
-    background-color:    pink;
+    background-color:   var(--top_bar_bg_color);
 }
+
+
+/* logo */
+
+
+#logo {
+    display:            flex;
+    float:              left;
+    flex-direction:     row;
+    height:             100%;
+    color:              var(--logo_color);
+    font-size:          var(--top_bar_height);
+    font-weight:        bold;
+    line-height:        var(--top_bar_height);
+}
+
+
+#logo img {
+    height:             100%;
+    width:              auto;
+}
+
+
+/* menu */
+
+
+#top_menu {
+    display:            flex;
+    height:             100%;
+    flex-direction:     row;
+    float:              right;
+}
+
+
+.top_menu_item {
+    padding:            0 var(--top_menu_item_padding);
+    color:              var(--top_menu_item_color);
+    text-align:         center;
+    line-height:        var(--top_bar_height);
+}
+
+
+.top_menu_item:hover {
+    background-color:   var(--top_menu_item_hov_bg_color);
+    color:              var(--top_menu_item_hov_color);
+}
+
+
+/* table header //////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 
 #table_header {
     width:              100%;
     height:             var(--table_header_height);
-    background-color:   red;
+    background-color:   var(--table_header_bg_color);
 }
+
+
+/* container /////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 
 #container {
@@ -40,11 +107,17 @@ body {
 }
 
 
+/* categories ////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
 #categories {
     width:              var(--categories_width);
     height:             100%;
     background-color:   purple;
 }
+
+
+/* timeline //////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 
 #timeline {
