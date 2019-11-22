@@ -1,1 +1,2 @@
 1. remove contributors from task (in design)
+2. move category creation from bottom to header (in design)
