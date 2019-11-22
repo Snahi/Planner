@@ -1,0 +1,1 @@
+1. remove contributors from task (in design)
