@@ -9,7 +9,7 @@ let tables = new Map();
 array that contains categories, where category is an object containing
 fields:
     id          : number,
-    tableId     : number
+    currTableId     : number
     name        : String
     color       : String
  */
@@ -18,7 +18,7 @@ let categories = [];
 array that contains tasks, where task is an object containing
 fields:
     id              : number,
-    tableId         : number,
+    currTableId         : number,
     title           : String,
     description     : String,
     start           : Date,
@@ -129,6 +129,17 @@ function deleteCategory(categoryId)
 function getAllCategories()
 {
     return categories;
+}
+
+
+
+function isCategoryNameUniqueInTable(tableId, categoryName)
+{
+    let categoriesWithTheSameName = categories.filter(category =>
+        category.tableId === tableId &&
+        category.name === categoryName);
+
+    return categoriesWithTheSameName.length === 0;
 }
 
 

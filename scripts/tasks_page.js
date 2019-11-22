@@ -1,9 +1,7 @@
 /* Main script for tasks_page.html. Contains state and basic functions */
 
 // state
-let tableId = 1;
-
-
+let currTableId = 1;
 
 function initTasksPage()
 {
@@ -15,6 +13,6 @@ function initTasksPage()
 
 function loadCategories()
 {
-    currCategories = getAllCategories().filter(category => category.tableId = tableId);
+    currCategories = getAllCategories().filter(category => category.tableId = currTableId);
     displayCategories();
 }

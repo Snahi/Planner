@@ -12,6 +12,7 @@
     <script src="scripts/db_simulation.js"></script>
     <script src="scripts/tasks_page.js"></script>
     <script src="scripts/categories.js"></script>
+    <script src="scripts/string_utils.js"></script>
 
 </head>
 <body onload="initTasksPage()">
@@ -46,10 +47,11 @@
 
                 <span>Categories</span>
 
-                <form id="category_creation_form">
+                <div id="category_creation_form" action="">
                     <input id="new_category_name" type="text" placeholder="new category name..."/>
-                    <button id="but_create_category">Add</button>
-                </form>
+                    <div id="but_create_category"
+                            onclick="createCategory(document.getElementById('new_category_name').value)">Add</div>
+                </div>
 
             </header>
             <!-- /end header --------------------------->
