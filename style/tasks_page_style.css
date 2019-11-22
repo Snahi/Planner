@@ -1,22 +1,30 @@
 *{
     box-sizing:         border-box;
 
-    /* dimensions */
+    /* dimensions ////////////////////////////////////////////////////////// */
     --top_bar_height:           40px;
     --table_header_height:      60px;
     --categories_width:         20%;
+    --categories_header_height: 80px;
     --top_menu_item_padding:    10px;
 
-    /* colors */
-    --bright_color:                 #14FFEC;
-    --blue:                         #0D7377;
-    --logo_color:                   var(--blue);
-    --top_bar_bg_color:             #212121;
-    --table_header_bg_color:        #333333;
-    --categories_color:             var(--top_bar_bg_color);
-    --top_menu_item_color:          #0D7377;
-    --top_menu_item_hov_bg_color:   var(--table_header_bg_color);
-    --top_menu_item_hov_color:      var(--bright_color);
+    /* colors ////////////////////////////////////////////////////////////// */
+    /* general */
+    --bright_color:                     #14FFEC;
+    --blue:                             #0D7377;
+    /* top bar */
+    --logo_color:                       var(--blue);
+    --top_bar_bg_color:                 #212121;
+    --top_menu_item_color:              #0D7377;
+    --top_menu_item_hov_bg_color:       var(--table_header_bg_color);
+    --top_menu_item_hov_color:          var(--bright_color);
+    /* table header */
+    --table_header_bg_color:            #333333;
+    /* categories */
+    --categories_color:                 var(--top_bar_bg_color);
+    --categories_menu_bg_color:         var(--top_bar_bg_color);
+    --categories_header_color:          var(--blue);
+    --categories_header_border_color:   var(--blue);
 }
 
 
@@ -57,7 +65,24 @@ body {
 #categories {
     width:              var(--categories_width);
     height:             100%;
-    background-color:   purple;
+    background-color:   var(--categories_menu_bg_color);
+}
+
+
+#categories_header {
+    display:            block;
+    width:              100%;
+    height:             var(--categories_header_height);
+    padding-left:       10px;
+    font-weight:        bold;
+    border-bottom:      2px solid var(--categories_header_border_color);
+}
+
+
+#categories_header span {
+    font-size:          calc(var(--categories_header_height) / 2);
+    color:              var(--categories_header_color);
+    line-height:        var(--categories_header_height);
 }
 
 
