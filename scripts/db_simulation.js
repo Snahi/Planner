@@ -11,6 +11,7 @@ fields:
     id          : number,
     tableId     : number
     name        : String
+    color       : String
  */
 let categories = [];
 /**
@@ -39,7 +40,7 @@ let lastId = -1;
 
 
 
-function init()
+function initDB()
 {
     let birthdayPartyId = addTable("Birthday Party");
     addTable("Work");
@@ -51,9 +52,6 @@ function init()
         ["color", "balloons"], [balloonsId]);
     addTask(birthdayPartyId, "choose shop", "choose in which shop to buy balloons", new Date(), new Date(),
         ["buy", "balloons"], [balloonsId]);
-
-    deleteTask(c);
-    tasks.forEach(value => console.log(value));
 }
 
 
@@ -68,7 +66,7 @@ function init()
 
 function addTable(name)
 {
-    let id = generateUniqueIdForMap(tables);
+    let id = generateUniqueId();
     tables.set(id, name);
 
     return id;
@@ -92,6 +90,13 @@ function deleteTable(name)
 
 
 
+function getAllTables()
+{
+    return tables;
+}
+
+
+
 // categories ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -101,9 +106,10 @@ function addCategory(tableId, name)
     let id = generateUniqueId();
 
     let newCategory = {
-        id: id,
-        tableId: tableId,
-        name: name
+        id          : id,
+        tableId     : tableId,
+        name        : name,
+        color       : getRandomColor()
     };
 
     categories.push(newCategory);
@@ -116,6 +122,13 @@ function addCategory(tableId, name)
 function deleteCategory(categoryId)
 {
     categories = categories.filter(category => category.id !== categoryId);
+}
+
+
+
+function getAllCategories()
+{
+    return categories;
 }
 
 
@@ -138,13 +151,13 @@ function addTask(tableId, title, description, start, end, hashTags, categories)
     let id = generateUniqueId();
 
     let newTask = {
-        id: id,
-        tableId: tableId,
-        description: description,
-        start: start,
-        end: end,
-        hashTags: hashTags,
-        categories: categories
+        id          : id,
+        tableId     : tableId,
+        description : description,
+        start       : start,
+        end         : end,
+        hashTags    : hashTags,
+        categories  : categories
     };
 
     tasks.push(newTask);
@@ -161,23 +174,14 @@ function deleteTask(taskId)
 
 
 
-// utils ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-/**
- * returns unique id based on current time
- */
-function generateUniqueIdForMap(map)
+function getAllTasks()
 {
-    let id          = new Date().getTime();
-
-    while(map.has(id))
-    {
-        id = new Date().getTime();
-    }
-
-    return id;
+    return tasks;
 }
+
+
+
+// utils ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -185,4 +189,19 @@ function generateUniqueId()
 {
     lastId = lastId + 1;
     return lastId;
+}
+
+
+
+function getRandomColor()
+{
+    let letters = "0123456789ABCDEF";
+    let color   = "#";
+
+    for (let i = 0; i < 6; i++)
+    {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+
+    return color;
 }

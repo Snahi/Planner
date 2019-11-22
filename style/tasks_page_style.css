@@ -2,11 +2,15 @@
     box-sizing:         border-box;
 
     /* dimensions ////////////////////////////////////////////////////////// */
+    /* top bar */
     --top_bar_height:           40px;
+    --top_menu_item_padding:    10px;
+    /* table header */
     --table_header_height:      60px;
+    /* categories */
     --categories_width:         20%;
     --categories_header_height: 80px;
-    --top_menu_item_padding:    10px;
+    --category_color_div_dim:   calc(0.6 * var(--category_item_height));
 
     /* colors ////////////////////////////////////////////////////////////// */
     /* general */
@@ -25,6 +29,10 @@
     --categories_menu_bg_color:         var(--top_bar_bg_color);
     --categories_header_color:          var(--blue);
     --categories_header_border_color:   var(--blue);
+    --category_item_height:             30px;
+    --category_item_border_color:       var(--categories_header_border_color);
+    --category_item_color:              var(--categories_header_color);
+    --category_color_div_border_color:  var(--category_item_border_color);
 }
 
 
@@ -83,6 +91,32 @@ body {
     font-size:          calc(var(--categories_header_height) / 2);
     color:              var(--categories_header_color);
     line-height:        var(--categories_header_height);
+}
+
+
+#categories_list {
+    height:             calc(100% - var(--categories_header_height));
+    overflow-y:         auto;
+}
+
+
+.category {
+    height:             var(--category_item_height);
+    border-bottom:      1px solid var(--category_item_border_color);
+    line-height:        var(--category_item_height);
+    color:              var(--category_item_color);
+    font-weight:        bold;
+    text-align:         center;
+}
+
+
+.category_color {
+    display:            inline-block;
+    float:              right;
+    width:              var(--category_color_div_dim);
+    height:             var(--category_color_div_dim);
+    margin:             calc((var(--category_item_height) - var(--category_color_div_dim)) / 2);
+    border:             2px solid var(--category_color_div_border_color);
 }
 
 
