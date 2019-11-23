@@ -40,7 +40,7 @@ function displayCategories()
         categoryDiv.appendChild(categoryColor);
         categoriesMenu.appendChild(categoryDiv);
 
-        if (category.isSelected) selectCategory(category, categoryDiv, categoryColor);
+        if (category.isSelected) selectCategoryGraphically(categoryDiv, categoryColor);
     });
 }
 
@@ -63,15 +63,15 @@ function onCategoryClicked(category, categoryDiv, categoryColorDiv)
         deselectCategory(category, categoryDiv, categoryColorDiv);
     else
         selectCategory(category, categoryDiv, categoryColorDiv);
+
+    console.log(selectedCategories);
 }
 
 
 
 function selectCategory(category, categoryDiv, categoryColorDiv)
 {
-    categoryDiv.style.backgroundColor   = SELECTED_CATEGORY_BG;
-    categoryDiv.style.color             = SELECTED_CATEGORY_COLOR;
-    categoryColorDiv.style.visibility   = "visible";
+    selectCategoryGraphically(categoryDiv, categoryColorDiv);
 
     selectedCategories.push(category);
     category.isSelected = true;
@@ -79,15 +79,31 @@ function selectCategory(category, categoryDiv, categoryColorDiv)
 
 
 
+function selectCategoryGraphically(categoryDiv, categoryColorDiv)
+{
+    categoryDiv.style.backgroundColor   = SELECTED_CATEGORY_BG;
+    categoryDiv.style.color             = SELECTED_CATEGORY_COLOR;
+    categoryColorDiv.style.visibility   = "visible";
+}
+
+
+
 function deselectCategory(category, categoryDiv, categoryColorDiv)
 {
-    categoryDiv.style.backgroundColor   = UNSELECTED_CATEGORY_BG;
-    categoryDiv.style.color             = UNSELECTED_CATEGORY_COLOR;
-    categoryColorDiv.style.visibility   = "hidden";
+    deselectCategoryGraphically(categoryDiv, categoryColorDiv);
 
     // remove from selected categories
     selectedCategories  = selectedCategories.filter(selectedCategory => selectedCategory.id !== category.id)
     category.isSelected = false;
+}
+
+
+
+function deselectCategoryGraphically(categoryDiv, categoryColorDiv)
+{
+    categoryDiv.style.backgroundColor   = UNSELECTED_CATEGORY_BG;
+    categoryDiv.style.color             = UNSELECTED_CATEGORY_COLOR;
+    categoryColorDiv.style.visibility   = "hidden";
 }
 
 
