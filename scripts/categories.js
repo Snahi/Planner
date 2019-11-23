@@ -10,6 +10,7 @@ const SELECTED_CATEGORY_BG      = "#0D7377";
 const SELECTED_CATEGORY_COLOR   = "#14FFEC";
 const UNSELECTED_CATEGORY_BG    = "#212121";
 const UNSELECTED_CATEGORY_COLOR = "#0D7377";
+const BUT_CATEGORY_SETT_CLASS   = "but_category_settings";
 
 // state
 let currCategories  = [];
@@ -31,16 +32,19 @@ function displayCategories()
         let categoryDiv     = createCategoryDiv(category);
         let categoryName    = createCategoryNameSpan(category);
         let categoryColor   = createCategoryColorDiv(category);
+        let categorySett    = createCategorySettingsBut(category);
 
-        // set onClick listeners
-        categoryDiv.onclick = function() {onCategoryClicked(category, categoryDiv, categoryColor)};
+        // set listeners
+        categoryDiv.onclick = function() {onCategoryClicked(category, categoryDiv, categoryColor, categorySett)};
 
         // bind
         categoryDiv.appendChild(categoryName);
         categoryDiv.appendChild(categoryColor);
+        categoryDiv.appendChild(categorySett);
         categoriesMenu.appendChild(categoryDiv);
 
-        if (category.isSelected) selectCategoryGraphically(categoryDiv, categoryColor);
+        if (category.isSelected) selectCategoryGraphically(categoryDiv, categoryColor, categorySett);
+        else deselectCategoryGraphically(categoryDiv, categoryColor, categorySett);
     });
 }
 
@@ -57,21 +61,19 @@ function createCategoryDiv(category)
 
 
 
-function onCategoryClicked(category, categoryDiv, categoryColorDiv)
+function onCategoryClicked(category, categoryDiv, categoryColorDiv, categorySett)
 {
     if (selectedCategories.some(selectedCategory => selectedCategory.id === category.id))
-        deselectCategory(category, categoryDiv, categoryColorDiv);
+        deselectCategory(category, categoryDiv, categoryColorDiv, categorySett);
     else
-        selectCategory(category, categoryDiv, categoryColorDiv);
-
-    console.log(selectedCategories);
+        selectCategory(category, categoryDiv, categoryColorDiv, categorySett);
 }
 
 
 
-function selectCategory(category, categoryDiv, categoryColorDiv)
+function selectCategory(category, categoryDiv, categoryColorDiv, categorySett)
 {
-    selectCategoryGraphically(categoryDiv, categoryColorDiv);
+    selectCategoryGraphically(categoryDiv, categoryColorDiv, categorySett);
 
     selectedCategories.push(category);
     category.isSelected = true;
@@ -79,31 +81,33 @@ function selectCategory(category, categoryDiv, categoryColorDiv)
 
 
 
-function selectCategoryGraphically(categoryDiv, categoryColorDiv)
+function selectCategoryGraphically(categoryDiv, categoryColorDiv, categorySett)
 {
     categoryDiv.style.backgroundColor   = SELECTED_CATEGORY_BG;
     categoryDiv.style.color             = SELECTED_CATEGORY_COLOR;
     categoryColorDiv.style.visibility   = "visible";
+    categorySett.style.display          = "none";
 }
 
 
 
-function deselectCategory(category, categoryDiv, categoryColorDiv)
+function deselectCategory(category, categoryDiv, categoryColorDiv, categorySett)
 {
-    deselectCategoryGraphically(categoryDiv, categoryColorDiv);
+    deselectCategoryGraphically(categoryDiv, categoryColorDiv, categorySett);
 
     // remove from selected categories
-    selectedCategories  = selectedCategories.filter(selectedCategory => selectedCategory.id !== category.id)
+    selectedCategories  = selectedCategories.filter(selectedCategory => selectedCategory.id !== category.id);
     category.isSelected = false;
 }
 
 
 
-function deselectCategoryGraphically(categoryDiv, categoryColorDiv)
+function deselectCategoryGraphically(categoryDiv, categoryColorDiv, categorySett)
 {
     categoryDiv.style.backgroundColor   = UNSELECTED_CATEGORY_BG;
     categoryDiv.style.color             = UNSELECTED_CATEGORY_COLOR;
     categoryColorDiv.style.visibility   = "hidden";
+    categorySett.style.display          = "inline-block";
 }
 
 
@@ -125,6 +129,16 @@ function createCategoryColorDiv(category)
     categoryColor.style.backgroundColor = category.color;
 
     return categoryColor;
+}
+
+
+
+function createCategorySettingsBut(category)
+{
+    let categorySettings        = document.createElement("DIV");
+    categorySettings.className  = BUT_CATEGORY_SETT_CLASS;
+
+    return categorySettings;
 }
 
 

@@ -14,6 +14,7 @@
     --category_color_div_dim:   calc(0.6 * var(--category_item_height));
     --new_category_name_width:  80%;
     --add_category_but_width:   18%;
+    --category_sett_div_dim:    var(--category_color_div_dim);
 
     /* colors ////////////////////////////////////////////////////////////// */
     /* general */
@@ -149,11 +150,37 @@ body {
 
 .category {
     height:             var(--category_item_height);
+    position:           relative;
     border-bottom:      1px solid var(--category_item_border_color);
     line-height:        var(--category_item_height);
     color:              var(--category_item_color);
     font-weight:        bold;
     text-align:         center;
+}
+
+
+/* it is created only in JS so you won't find it in tasks_page.html*/
+.but_category_settings {
+    display:            none;
+    visibility:         hidden;
+    position:           absolute;
+    top:                calc((var(--category_item_height) - var(--category_color_div_dim)) / 2);
+    right:              calc((var(--category_item_height) - var(--category_color_div_dim)) / 2);
+    width:              var(--category_sett_div_dim);
+    height:             var(--category_sett_div_dim);
+    float:              right;
+    background-image:   url("../images/settings_icon.png");
+    background-size:    cover;
+}
+
+
+.but_category_settings:hover {
+    background-image:   url("../images/settings_icon_hover.png");
+}
+
+
+.category:hover .but_category_settings {
+    visibility:         visible;
 }
 
 
