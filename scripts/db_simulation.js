@@ -9,9 +9,10 @@ let tables = new Map();
 array that contains categories, where category is an object containing
 fields:
     id          : number,
-    currTableId     : number
+    currTableId : number
     name        : String
     color       : String
+    isSelected  : bool
  */
 let categories = [];
 /**
@@ -109,7 +110,8 @@ function addCategory(tableId, name)
         id          : id,
         tableId     : tableId,
         name        : name,
-        color       : getRandomColor()
+        color       : getRandomColor(),
+        isSelected  : false
     };
 
     categories.push(newCategory);

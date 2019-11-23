@@ -1,7 +1,10 @@
 /* Main script for tasks_page.html. Contains state and basic functions */
 
 // state
-let currTableId = 1;
+let currTableId         = 1;
+let selectedCategories  = [];
+
+
 
 function initTasksPage()
 {

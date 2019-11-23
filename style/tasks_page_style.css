@@ -9,6 +9,7 @@
     --table_header_height:      60px;
     /* categories */
     --categories_width:         20%;
+    --category_item_height:     30px;
     --categories_header_height: 120px;
     --category_color_div_dim:   calc(0.6 * var(--category_item_height));
     --new_category_name_width:  80%;
@@ -31,10 +32,9 @@
     --categories_menu_bg_color:         var(--top_bar_bg_color);
     --categories_header_color:          var(--blue);
     --categories_header_border_color:   var(--blue);
-    --category_item_height:             30px;
     --category_item_border_color:       var(--categories_header_border_color);
     --category_item_color:              var(--categories_header_color);
-    --category_color_div_border_color:  var(--category_item_border_color);
+    --category_color_div_border_color:  var(--categories_menu_bg_color);
     --new_category_input_bg_color:      var(--categories_menu_bg_color);
     --new_category_input_border_color:  var(--category_item_border_color);
     --new_category_color:               var(--new_category_input_border_color);
@@ -159,6 +159,7 @@ body {
 
 .category_color {
     display:            inline-block;
+    visibility:         hidden;
     float:              right;
     width:              var(--category_color_div_dim);
     height:             var(--category_color_div_dim);

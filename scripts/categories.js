@@ -6,6 +6,10 @@ const CATEGORY_CLASS            = "category";
 const CATEGORIES_LIST_ID        = "categories_list";
 const CATEGORY_COLOR_CLASS      = "category_color";
 const CATEGORY_NAME_REGEX       = new RegExp("^[a-zA-Z]{1}[a-zA-Z ]{0,29}$");
+const SELECTED_CATEGORY_BG      = "#0D7377";
+const SELECTED_CATEGORY_COLOR   = "#14FFEC";
+const UNSELECTED_CATEGORY_BG    = "#212121";
+const UNSELECTED_CATEGORY_COLOR = "#0D7377";
 
 // state
 let currCategories  = [];
@@ -16,27 +20,95 @@ function displayCategories()
 {
     let categoriesMenu = document.getElementById(CATEGORIES_LIST_ID);
     categoriesMenu.innerHTML = "";  // clear old categories
-    let categoryDiv;
-    let categoryName;
-    let categoryColor;
+    // let categoryDiv;
+    // let categoryName;
+    // let categoryColor;
 
+    currCategories.sort((cat1, cat2) => cat1.name.localeCompare(cat2.name));
     currCategories.forEach(category =>
     {
-        categoryDiv             = document.createElement("DIV");
-        categoryDiv.id          = CATEGORY_DIV_ID_PREFIX + category.id;
-        categoryDiv.className   = CATEGORY_CLASS;
+        // create html views
+        let categoryDiv     = createCategoryDiv(category);
+        let categoryName    = createCategoryNameSpan(category);
+        let categoryColor   = createCategoryColorDiv(category);
 
-        categoryName            = document.createElement("SPAN");
-        categoryName.innerText  = category.name;
+        // set onClick listeners
+        categoryDiv.onclick = function() {onCategoryClicked(category, categoryDiv, categoryColor)};
 
-        categoryColor                       = document.createElement("DIV");
-        categoryColor.className             = CATEGORY_COLOR_CLASS;
-        categoryColor.style.backgroundColor = category.color;
-
+        // bind
         categoryDiv.appendChild(categoryName);
         categoryDiv.appendChild(categoryColor);
         categoriesMenu.appendChild(categoryDiv);
+
+        if (category.isSelected) selectCategory(category, categoryDiv, categoryColor);
     });
+}
+
+
+
+function createCategoryDiv(category)
+{
+    let categoryDiv         = document.createElement("DIV");
+    categoryDiv.id          = CATEGORY_DIV_ID_PREFIX + category.id;
+    categoryDiv.className   = CATEGORY_CLASS;
+
+    return categoryDiv;
+}
+
+
+
+function onCategoryClicked(category, categoryDiv, categoryColorDiv)
+{
+    if (selectedCategories.some(selectedCategory => selectedCategory.id === category.id))
+        deselectCategory(category, categoryDiv, categoryColorDiv);
+    else
+        selectCategory(category, categoryDiv, categoryColorDiv);
+}
+
+
+
+function selectCategory(category, categoryDiv, categoryColorDiv)
+{
+    categoryDiv.style.backgroundColor   = SELECTED_CATEGORY_BG;
+    categoryDiv.style.color             = SELECTED_CATEGORY_COLOR;
+    categoryColorDiv.style.visibility   = "visible";
+
+    selectedCategories.push(category);
+    category.isSelected = true;
+}
+
+
+
+function deselectCategory(category, categoryDiv, categoryColorDiv)
+{
+    categoryDiv.style.backgroundColor   = UNSELECTED_CATEGORY_BG;
+    categoryDiv.style.color             = UNSELECTED_CATEGORY_COLOR;
+    categoryColorDiv.style.visibility   = "hidden";
+
+    // remove from selected categories
+    selectedCategories  = selectedCategories.filter(selectedCategory => selectedCategory.id !== category.id)
+    category.isSelected = false;
+}
+
+
+
+function createCategoryNameSpan(category)
+{
+    let categoryName        = document.createElement("SPAN");
+    categoryName.innerText  = category.name;
+
+    return categoryName;
+}
+
+
+
+function createCategoryColorDiv(category)
+{
+    let categoryColor                   = document.createElement("DIV");
+    categoryColor.className             = CATEGORY_COLOR_CLASS;
+    categoryColor.style.backgroundColor = category.color;
+
+    return categoryColor;
 }
 
 
