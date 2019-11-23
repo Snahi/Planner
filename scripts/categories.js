@@ -17,6 +17,10 @@ let currCategories  = [];
 
 
 
+// displaying categories ///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 function displayCategories()
 {
     let categoriesMenu = document.getElementById(CATEGORIES_LIST_ID);
@@ -143,6 +147,57 @@ function createCategorySettingsBut(category)
 
 
 
+// category settings ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+function onCategorySettingsClicked(category)
+{
+
+}
+
+
+
+function createCategorySettingsDiv()
+{
+
+}
+
+
+
+function createDeleteCategoryButton(category)
+{
+
+}
+
+
+
+function onDeleteCategoryButtonClicked(category)
+{
+
+}
+
+
+
+function createEditCategoryNameInput(category)
+{
+
+}
+
+
+
+function createTablesDropDown(category)
+{
+
+}
+
+
+
+
+// category creation ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 function createCategory(categoryName)
 {
     categoryName = removeRedundantSpaces(categoryName);
@@ -165,7 +220,3 @@ function createCategory(categoryName)
             "than 30 characters");
     }
 }
-
-
-
-// utils ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
