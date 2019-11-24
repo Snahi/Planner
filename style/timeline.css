@@ -1,0 +1,7 @@
+#bottom_bar {
+    height: 100px;
+    width: 100%;
+    background: var(--table_header_bg_color);
+    position: fixed;
+    bottom: 0;
+}
