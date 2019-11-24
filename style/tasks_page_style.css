@@ -231,5 +231,6 @@ h4 {
 #timeline {
     width:              calc(100% - var(--categories_width));
     height:             100%;
-    background-color:   yellow;
+    background-color:   var(--blue);
+    position: relative;
 }
