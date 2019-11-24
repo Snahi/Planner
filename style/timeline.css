@@ -5,3 +5,8 @@
     position: fixed;
     bottom: 0;
 }
+
+#calendar {
+    height: 10%;
+    width: 100%;
+}

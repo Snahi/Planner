@@ -7,6 +7,18 @@
     <!--fonts-->
     <link href="https://fonts.googleapis.com/css?family=Muli|Open+Sans&display=swap" rel="stylesheet">
 
+    <!--libraries-->
+    <link href='fullcalendar-scheduler-4.3.1/packages/core/main.css' rel='stylesheet' />
+    <link href="fullcalendar-scheduler-4.3.1/packages-premium/timeline/main.css" rel="stylesheet">
+    <link href="fullcalendar-scheduler-4.3.1/packages-premium/resource-timeline/main.css" rel="stylesheet">
+
+    <script src='fullcalendar-scheduler-4.3.1/packages/core/main.js'></script>
+    <script src="fullcalendar-scheduler-4.3.1/packages-premium/timeline/main.js"></script>
+    <script src="fullcalendar-scheduler-4.3.1/packages-premium/resource-common/main.js"></script>
+    <script src="fullcalendar-scheduler-4.3.1/packages-premium/resource-timeline/main.js"></script>
+
+
+
     <!-- stylesheets -->
     <link rel="stylesheet" href="style/tasks_page_style.css"/>
     <link rel="stylesheet" href="style/top_bar_style.css" />
@@ -17,6 +29,7 @@
     <script src="scripts/tasks_page.js"></script>
     <script src="scripts/categories.js"></script>
     <script src="scripts/string_utils.js"></script>
+    <script src="scripts/timeline.js"></script>
 
 </head>
 <body onload="initTasksPage()">
@@ -72,7 +85,7 @@
 
         <!-- timeline -------------------------------------------------->
         <section id="timeline">
-            <div id="bottom_bar">
+            <div id="calendar">
 
             </div>
         </section>

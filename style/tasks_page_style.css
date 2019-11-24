@@ -233,4 +233,5 @@ h4 {
     height:             100%;
     background-color:   var(--blue);
     position: relative;
+    overflow-y: scroll;
 }
