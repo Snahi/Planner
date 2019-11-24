@@ -57,6 +57,36 @@ body {
 }
 
 
+/* fonts /////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+a {
+    font-family: 'Open Sans', sans-serif;
+}
+
+div {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    font-family: 'Muli', sans-serif;
+}
+
+h2 {
+    font-family: 'Muli', sans-serif;
+}
+
+h3 {
+    font-family: 'Muli', sans-serif;
+}
+
+h4 {
+    font-family: 'Muli', sans-serif;
+}
+
 /* table header //////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 
