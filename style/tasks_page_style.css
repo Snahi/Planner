@@ -126,12 +126,13 @@ h4 {
 }
 
 
-#categories_header span {
+#categories_header h1 {
     display:            block;
     width:              100%;
     text-align:         center;
-    font-size:          calc(var(--categories_header_height) / 2.5);
+    font-size:          calc(var(--categories_header_height) / 3);
     color:              var(--categories_header_color);
+    margin-top:         0;
     margin-bottom:      10px;
 }
 
