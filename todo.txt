@@ -1,2 +1,5 @@
-1. remove contributors from task (in design)
+1. delete contributors from task (in design)
 2. move category creation from bottom to header (in design)
+3. delete move from table to table
+4. delete archive button from category settings
+5. change category delete icon to a trahs bin

@@ -11,6 +11,11 @@ const SELECTED_CATEGORY_COLOR   = "#14FFEC";
 const UNSELECTED_CATEGORY_BG    = "#212121";
 const UNSELECTED_CATEGORY_COLOR = "#0D7377";
 const BUT_CATEGORY_SETT_CLASS   = "but_category_settings";
+const BUT_DELETE_CATEGORY_CLASS = "but_delete_category";
+const INPUT_CATEGORY_NAME_CLASS = "input_category_name";
+const BUT_SAVE_CAT_EDIT_CLASS   = "but_save_category_edit";
+const DIV_CATEGORY_SETTINGS     = "div_category_settings";
+const CAT_EDIT_DIV_ELEM_CLASS   = "category_edit_elem";
 
 // state
 let currCategories  = [];
@@ -25,9 +30,6 @@ function displayCategories()
 {
     let categoriesMenu = document.getElementById(CATEGORIES_LIST_ID);
     categoriesMenu.innerHTML = "";  // clear old categories
-    // let categoryDiv;
-    // let categoryName;
-    // let categoryColor;
 
     currCategories.sort((cat1, cat2) => cat1.name.localeCompare(cat2.name));
     currCategories.forEach(category =>
@@ -36,20 +38,39 @@ function displayCategories()
         let categoryDiv     = createCategoryDiv(category);
         let categoryName    = createCategoryNameSpan(category);
         let categoryColor   = createCategoryColorDiv(category);
-        let categorySett    = createCategorySettingsBut(category);
+        let catDivArr       = createCategorySettingsDiv(category);  // [0] catSettingDiv, [1] edited name - i need to
+                                                                    // refresh it because it holds old value
+        let categorySettDiv = catDivArr[0];
+        let catEditName     = catDivArr[1];
+        let categorySett    = createCategorySettingsBut(categorySettDiv, category, catEditName);
 
         // set listeners
-        categoryDiv.onclick = function() {onCategoryClicked(category, categoryDiv, categoryColor, categorySett)};
+        categoryName.onclick = function() {onCategoryClicked(category, categoryDiv, categoryColor, categorySett)};
 
         // bind
         categoryDiv.appendChild(categoryName);
         categoryDiv.appendChild(categoryColor);
         categoryDiv.appendChild(categorySett);
+        categoryDiv.appendChild(categorySettDiv);
         categoriesMenu.appendChild(categoryDiv);
+
+        setCategorySettingDivDimensions(categorySettDiv, categoryDiv);
 
         if (category.isSelected) selectCategoryGraphically(categoryDiv, categoryColor, categorySett);
         else deselectCategoryGraphically(categoryDiv, categoryColor, categorySett);
     });
+}
+
+
+
+function setCategorySettingDivDimensions(categorySettingDiv, categoryDiv)
+{
+    let catEditDivHeight    = window.getComputedStyle(categorySettingDiv, null).height;
+    catEditDivHeight        = catEditDivHeight.substr(0, catEditDivHeight.length - 2);
+    let categoryHeight      = categoryDiv.offsetHeight;
+    let editDivOffset       = (catEditDivHeight - categoryHeight) / 2;
+
+    categorySettingDiv.style.top = (categoryDiv.getBoundingClientRect().top - editDivOffset) + "px";
 }
 
 
@@ -118,8 +139,9 @@ function deselectCategoryGraphically(categoryDiv, categoryColorDiv, categorySett
 
 function createCategoryNameSpan(category)
 {
-    let categoryName        = document.createElement("SPAN");
-    categoryName.innerText  = category.name;
+    let categoryName            = document.createElement("SPAN");
+    categoryName.innerText      = category.name;
+    categoryName.style.cursor   = "pointer";
 
     return categoryName;
 }
@@ -137,11 +159,12 @@ function createCategoryColorDiv(category)
 
 
 
-function createCategorySettingsBut(category)
+function createCategorySettingsBut(categoryDiv, category, catEditName)
 {
     let categorySettings        = document.createElement("DIV");
     categorySettings.className  = BUT_CATEGORY_SETT_CLASS;
 
+    categorySettings.onclick = function() {onCategorySettingsClicked(categoryDiv, category, catEditName)};
     return categorySettings;
 }
 
@@ -151,23 +174,56 @@ function createCategorySettingsBut(category)
 
 
 
-function onCategorySettingsClicked(category)
+function onCategorySettingsClicked(categoryDiv, category, catEditName)
 {
+    let display = window.getComputedStyle(categoryDiv, null).display;
 
+    if (display === "none")
+    {
+        catEditName.value           = category.name;
+        categoryDiv.style.display   = "flex";
+    }
+    else
+        categoryDiv.style.display = "none";
 }
 
 
 
-function createCategorySettingsDiv()
+// If an event gets to the body
+$(document).click(function(e)
 {
+    if($(e.target).closest('.div_category_settings').length !== 0 ||
+        $(e.target).closest('.but_category_settings').length !== 0) return false;
+    $('.div_category_settings').hide();
+});
 
+
+
+function createCategorySettingsDiv(category)
+{
+    let catSetDiv   = document.createElement("DIV");
+
+    let delBut          = createDeleteCategoryButton(category);
+    let nameInput       = createEditCategoryNameInput(category);
+    let saveBut         = createSaveCategoryButton(category, nameInput);
+
+    catSetDiv.appendChild(delBut);
+    catSetDiv.appendChild(nameInput);
+    catSetDiv.appendChild(saveBut);
+
+    catSetDiv.className = DIV_CATEGORY_SETTINGS;
+
+    return [catSetDiv, nameInput];
 }
 
 
 
 function createDeleteCategoryButton(category)
 {
+    let delBut          = document.createElement("DIV");
+    delBut.className    = BUT_DELETE_CATEGORY_CLASS + " " + CAT_EDIT_DIV_ELEM_CLASS;
 
+    return delBut;
 }
 
 
@@ -181,14 +237,23 @@ function onDeleteCategoryButtonClicked(category)
 
 function createEditCategoryNameInput(category)
 {
+    let nameInput       = document.createElement("INPUT");
+    nameInput.type      = "text";
+    nameInput.className = INPUT_CATEGORY_NAME_CLASS + " " + CAT_EDIT_DIV_ELEM_CLASS;
+    nameInput.value     = category.name;
 
+    return nameInput;
 }
 
 
 
-function createTablesDropDown(category)
+function createSaveCategoryButton(category, nameInput)
 {
+    let saveBut         = document.createElement("DIV");
+    saveBut.className   = BUT_SAVE_CAT_EDIT_CLASS + " " + CAT_EDIT_DIV_ELEM_CLASS;
+    saveBut.innerText   = "save changes";
 
+    return saveBut;
 }
 
 
