@@ -63,6 +63,14 @@ function displayCategories()
 
 
 
+function refreshCategories()
+{
+    currCategories = getAllCategories().filter(category => category.tableId = currTableId);
+    displayCategories();
+}
+
+
+
 function setCategorySettingDivDimensions(categorySettingDiv, categoryDiv)
 {
     let catEditDivHeight    = window.getComputedStyle(categorySettingDiv, null).height;
@@ -233,8 +241,7 @@ function createDeleteCategoryButton(category)
 function onDeleteCategoryButtonClicked(category)
 {
     deleteCategory(category.id);
-    currCategories = getAllCategories();
-    displayCategories();
+    refreshCategories();
 }
 
 
@@ -262,6 +269,13 @@ function createSaveCategoryButton(category, nameInput)
 
 
 
+function onSaveCategoryButtonClicked(category, nameInput)
+{
+
+}
+
+
+
 
 // category creation ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -276,8 +290,7 @@ function createCategory(categoryName)
     if (isUnique && isValid)
     {
         addCategory(currTableId, categoryName);
-        currCategories = getAllCategories();
-        displayCategories();
+        refreshCategories();
     }
     else if (!isUnique)
     {
