@@ -264,6 +264,8 @@ function createSaveCategoryButton(category, nameInput)
     saveBut.className   = BUT_SAVE_CAT_EDIT_CLASS + " " + CAT_EDIT_DIV_ELEM_CLASS;
     saveBut.innerText   = "save changes";
 
+    saveBut.onclick = function() {onSaveCategoryButtonClicked(category, nameInput)};
+
     return saveBut;
 }
 
@@ -271,7 +273,14 @@ function createSaveCategoryButton(category, nameInput)
 
 function onSaveCategoryButtonClicked(category, nameInput)
 {
+    let categoryName    = removeRedundantSpaces(nameInput.value);
 
+    let isNameValid = validateCategoryName(categoryName);
+    if (isNameValid)
+    {
+        category.name = categoryName;
+        refreshCategories();
+    }
 }
 
 
@@ -284,13 +293,25 @@ function onSaveCategoryButtonClicked(category, nameInput)
 function createCategory(categoryName)
 {
     categoryName = removeRedundantSpaces(categoryName);
+
+    let isNameValid = validateCategoryName(categoryName);
+    if (isNameValid)
+    {
+        addCategory(currTableId, categoryName);
+        refreshCategories();
+    }
+}
+
+
+
+function validateCategoryName(categoryName)
+{
     let isUnique = isCategoryNameUniqueInTable(currTableId, categoryName);
     let isValid  = CATEGORY_NAME_REGEX.test(categoryName);
 
     if (isUnique && isValid)
     {
-        addCategory(currTableId, categoryName);
-        refreshCategories();
+        return true;
     }
     else if (!isUnique)
     {
@@ -301,4 +322,6 @@ function createCategory(categoryName)
         window.alert("Category name is invalid. It must contain only letters and cannot be shorter than 1 and longer " +
             "than 30 characters");
     }
+
+    return false;
 }
