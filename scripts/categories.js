@@ -223,6 +223,8 @@ function createDeleteCategoryButton(category)
     let delBut          = document.createElement("DIV");
     delBut.className    = BUT_DELETE_CATEGORY_CLASS + " " + CAT_EDIT_DIV_ELEM_CLASS;
 
+    delBut.onclick = function() {onDeleteCategoryButtonClicked(category)};
+
     return delBut;
 }
 
@@ -230,7 +232,9 @@ function createDeleteCategoryButton(category)
 
 function onDeleteCategoryButtonClicked(category)
 {
-
+    deleteCategory(category.id);
+    currCategories = getAllCategories();
+    displayCategories();
 }
 
 
