@@ -107,12 +107,14 @@
 
     <!-- task creation popup -------------------------------------------------------------------------------->
     <section id="task_creation_popup">
+        <img id="but_close" src="images/close.png" alt="x"/>
+
         <div class="task_creation_line">
             <label for="new_task_title">Title</label>
             <input id="new_task_title" type="text" placeholder="task title..."/>
         </div>
 
-        <div class="task_creation_line">
+        <div id="new_task_description_line" class="task_creation_line">
             <label for="new_task_description">Description</label>
             <textarea id="new_task_description" placeholder="description..."></textarea>
         </div>
@@ -121,9 +123,9 @@
             <label for="new_task_start">Start</label>
             <input id="new_task_start" type="date" placeholder="DD/MM/YYYY"/>
 
-            <img id="from_to_arrow" src="#" alt="->"/>
+            <img id="from_to_arrow" src="images/arrow_right.png" alt="->"/>
 
-            <label for="new_task_end">End</label>
+            <label id="new_task_end_label" for="new_task_end">End</label>
             <input id="new_task_end" type="date" placeholder="DD/MM/YYYY"/>
         </div>
 
@@ -136,6 +138,10 @@
         <div class="task_creation_line">
             <label for="new_task_hash_tags">HashTags</label>
             <input id="new_task_hash_tags" type="text" placeholder="#hashtag1#hashtag2..."/>
+        </div>
+
+        <div id="but_create_new_task">
+            Create
         </div>
     </section>
 

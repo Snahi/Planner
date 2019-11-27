@@ -27,6 +27,15 @@
     --category_settings_div_padding:    6px;
     --category_edit_div_icon_dim:       calc(var(--category_settings_div_height) * 0.5);
     --category_edit_name_input_width:   200px;
+    /* task popup */
+    --tsk_creation_popup_width:         60vw;
+    --tsk_creation_popup_height:        70vh;
+    --tsk_creation_line_width:          80%;
+    --tsk_creation_line_label_width:    100px;
+    --tsk_creation_input_width:         calc(97% - var(--tsk_creation_line_label_width));
+    --tsk_creation_input_height:        20px;
+    --new_task_description_height:      200px;
+    --but_create_new_task_height:       40px;
 
     /* colors ////////////////////////////////////////////////////////////// */
     /* general */
@@ -66,6 +75,8 @@
     --category_edit_div_bg:             var(--categories_menu_bg_color);
     --but_save_changes_bg_color:        var(--but_create_category_bg_color);
     --div_category_settings_border_col: var(--bright_color);
+    /* task popup */
+    --tsk_creation_popup_bg:            white;
 }
 
 
@@ -381,6 +392,115 @@ h4 {
     width:              calc(100% - var(--categories_width));
     height:             100%;
     background-color:   var(--blue);
-    position: relative;
-    overflow-y: scroll;
+    position:           relative;
+    overflow-y:         scroll;
+}
+
+
+/* task creation /////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+#task_creation_popup {
+    display:            flex;
+    flex-direction:     column;
+    align-items:        center;
+    justify-content:    center;
+    position:           fixed;
+    top:                calc((100% - var(--tsk_creation_popup_height)) / 2);
+    left:               calc((100% - var(--tsk_creation_popup_width)) / 2);
+    z-index:            11000;
+    width:              var(--tsk_creation_popup_width);
+    height:             var(--tsk_creation_popup_height);
+    background-color:   var(--tsk_creation_popup_bg);
+    border-radius:      4px;
+    box-shadow:         0 0 10px black;
+    overflow:           auto;
+}
+
+
+.task_creation_line {
+    display:            flex;
+    flex-direction:     row;
+    align-items:        center;
+    justify-content:    flex-start;
+    margin:             10px;
+    width:              var(--tsk_creation_line_width);
+}
+
+
+.task_creation_line>label:not(#new_task_end_label) {
+    display:            inline-block;
+    width:              var(--tsk_creation_line_label_width);
+}
+
+
+.task_creation_line>input {
+    height:             var(--tsk_creation_input_height);
+}
+
+
+.task_creation_line>input:not(#new_task_start):not(#new_task_end),
+.task_creation_line>textarea,
+.task_creation_line>select {
+    width:              var(--tsk_creation_input_width);
+}
+
+
+#new_task_description_line {
+    display:            flex;
+    flex-direction:     row;
+    align-items:        start;
+}
+
+
+#new_task_description {
+    height:             var(--new_task_description_height);
+}
+
+
+#but_create_new_task {
+    width:              var(--but_new_task_width);
+    height:             var(--but_create_new_task_height);
+    background-color:   var(--but_new_task_bg);
+    margin-top:         16px;
+    border-radius:      4px;
+    border:             none;
+    color:              var(--bright_color);
+    text-align:         center;
+    line-height:        var(--table_header_but_height);
+    cursor:             pointer;
+}
+
+
+#but_create_new_task:hover {
+    background-color:   var(--but_new_task_bg_hov);
+    color:              var(--but_new_task_bg);
+}
+
+
+#from_to_arrow {
+    height:             var(--tsk_creation_input_height);
+    width:              auto;
+    margin:             0 5px 0 5px;
+}
+
+
+#new_task_end_label {
+    margin-right:       5px;
+}
+
+
+#but_close {
+    position:           absolute;
+    top:                5px;
+    right:              5px;
+    width:              18px;
+    height:             auto;
+}
+
+
+#but_close:hover {
+    width:              16px;
+    top:                6px;
+    right:              6px;
 }
