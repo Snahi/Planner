@@ -69,7 +69,6 @@ function createNewTask()
         addTask(currTableId, title, desc, startDate, endDate, hashTagsArr, category);
         closeTaskCreationPopup();
         window.alert("Task created");
-        console.log(tasks);
     }
 }
 

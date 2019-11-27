@@ -108,44 +108,48 @@
 
     <!-- task creation popup -------------------------------------------------------------------------------->
     <section id="task_creation_popup">
-        <img id="but_close" src="images/close.png" alt="x" onclick="onCloseTaskCreationPopupClicked()"/>
+        <!-- for some reason without this div in Firefox not every elements are visible if screen is too small - cannot
+        scroll to first element -->
+        <div>
+            <img id="but_close" src="images/close.png" alt="x" onclick="onCloseTaskCreationPopupClicked()"/>
 
-        <div class="task_creation_line">
-            <label for="new_task_title">Title</label>
-            <input id="new_task_title" type="text" placeholder="task title..." pattern="^[a-zA-Z 0-9]{1,30}$"/>
-        </div>
+            <div id="new_task_title_line" class="task_creation_line">
+                <label for="new_task_title">Title</label>
+                <input id="new_task_title" type="text" placeholder="task title..." pattern="^[a-zA-Z 0-9]{1,30}$"/>
+            </div>
 
-        <div id="new_task_description_line" class="task_creation_line">
-            <label for="new_task_description">Description</label>
-            <textarea id="new_task_description" placeholder="description..." maxlength="2000"></textarea>
-        </div>
+            <div id="new_task_description_line" class="task_creation_line">
+                <label for="new_task_description">Description</label>
+                <textarea id="new_task_description" placeholder="description..." maxlength="2000"></textarea>
+            </div>
 
-        <div class="task_creation_line">
-            <label for="new_task_start">Start</label>
-            <input id="new_task_start" type="date"/>
-            <input id="new_task_start_time" type="time" placeholder="gg:hh"/>
+            <div class="task_creation_line">
+                <label for="new_task_start">Start</label>
+                <input id="new_task_start" type="date"/>
+                <input id="new_task_start_time" type="time" placeholder="gg:hh"/>
 
-            <img id="from_to_arrow" src="images/arrow_right.png" alt="->"/>
+                <img id="from_to_arrow" src="images/arrow_right.png" alt="->"/>
 
-            <label id="new_task_end_label" for="new_task_end">End</label>
-            <input id="new_task_end" type="date"/>
-            <input id="new_task_end_time" type="time" placeholder="gg:hh"/>
-        </div>
+                <label id="new_task_end_label" for="new_task_end">End</label>
+                <input id="new_task_end" type="date"/>
+                <input id="new_task_end_time" type="time" placeholder="gg:hh"/>
+            </div>
 
-        <div class="task_creation_line">
-            <label for="new_task_category">Category</label>
-            <select id="new_task_category">
-            </select>
-        </div>
+            <div class="task_creation_line">
+                <label for="new_task_category">Category</label>
+                <select id="new_task_category">
+                </select>
+            </div>
 
-        <div class="task_creation_line">
-            <label for="new_task_hash_tags">HashTags</label>
-            <input id="new_task_hash_tags" type="text" placeholder="#hashtag1#hashtag2..."
-                   pattern="^[a-zA-Z0-9#]{0,100}$"/>
-        </div>
+            <div class="task_creation_line">
+                <label for="new_task_hash_tags">HashTags</label>
+                <input id="new_task_hash_tags" type="text" placeholder="#hashtag1#hashtag2..."
+                       pattern="^[a-zA-Z0-9#]{0,100}$"/>
+            </div>
 
-        <div id="but_create_new_task" onclick="createNewTask()">
-            Create
+            <div id="but_create_new_task" onclick="createNewTask()">
+                Create
+            </div>
         </div>
     </section>
 

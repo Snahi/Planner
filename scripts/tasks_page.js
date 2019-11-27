@@ -29,7 +29,7 @@ function onNewTaskClicked()
 {
     populateCategorySelect();
     let newTaskPopup = document.getElementById(TASK_CREATION_POPUP_ID);
-    newTaskPopup.style.display = "flex";
+    newTaskPopup.style.display = "block";
 }
 
 

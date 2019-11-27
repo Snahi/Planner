@@ -29,7 +29,7 @@
     --category_edit_name_input_width:   200px;
     /* task popup */
     --tsk_creation_popup_width:         60vw;
-    --tsk_creation_popup_height:        70vh;
+    --tsk_creation_popup_height:        80vh;
     --tsk_creation_line_width:          80%;
     --tsk_creation_line_label_width:    100px;
     --tsk_creation_input_width:         calc(97% - var(--tsk_creation_line_label_width));
@@ -402,9 +402,6 @@ h4 {
 
 #task_creation_popup {
     display:            none;
-    flex-direction:     column;
-    align-items:        center;
-    justify-content:    center;
     position:           fixed;
     top:                calc((100% - var(--tsk_creation_popup_height)) / 2);
     left:               calc((100% - var(--tsk_creation_popup_width)) / 2);
@@ -415,6 +412,15 @@ h4 {
     border-radius:      4px;
     box-shadow:         0 0 10px black;
     overflow:           auto;
+}
+
+
+#task_creation_popup>div {
+    display:            flex;
+    flex-direction:     column;
+    align-items:        center;
+    justify-content:    center;
+    margin:             50px;
 }
 
 
