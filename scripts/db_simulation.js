@@ -19,7 +19,7 @@ let categories = [];
 array that contains tasks, where task is an object containing
 fields:
     id              : number,
-    currTableId         : number,
+    currTableId     : number,
     title           : String,
     description     : String,
     start           : Date,
@@ -166,6 +166,7 @@ function addTask(tableId, title, description, start, end, hashTags, categories)
     let newTask = {
         id          : id,
         tableId     : tableId,
+        title       : title,
         description : description,
         start       : start,
         end         : end,

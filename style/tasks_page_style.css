@@ -401,7 +401,7 @@ h4 {
 
 
 #task_creation_popup {
-    display:            flex;
+    display:            none;
     flex-direction:     column;
     align-items:        center;
     justify-content:    center;
@@ -439,7 +439,7 @@ h4 {
 }
 
 
-.task_creation_line>input:not(#new_task_start):not(#new_task_end),
+.task_creation_line>input:not(#new_task_start):not(#new_task_end):not(#new_task_start_time):not(#new_task_end_time),
 .task_creation_line>textarea,
 .task_creation_line>select {
     width:              var(--tsk_creation_input_width);
