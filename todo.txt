@@ -4,3 +4,5 @@
 4. delete archive button from category settings
 5. change category delete icon to a trahs bin
 6. change color of text on buttons in table header
+7. delete table dropdown from design
+8. only one category per task

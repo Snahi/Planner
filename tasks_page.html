@@ -62,6 +62,7 @@
         </div>
     </section>
 
+    <!-- container ---------------------------------------------------------------------------------------------------->
     <section id="container" class="flex_box">
 
         <!-- categories ------------------------------------------------->
@@ -98,6 +99,44 @@
         </section>
         <!-- /end timeline --------------------------------------------->
 
+    </section>
+    <!-- /end container ----------------------------------------------------------------------------------------------->
+
+
+    <!-- popups ------------------------------------------------------------------------------------------------------->
+
+    <!-- task creation popup -------------------------------------------------------------------------------->
+    <section id="task_creation_popup">
+        <div class="task_creation_line">
+            <label for="new_task_title">Title</label>
+            <input id="new_task_title" type="text" placeholder="task title..."/>
+        </div>
+
+        <div class="task_creation_line">
+            <label for="new_task_description">Description</label>
+            <textarea id="new_task_description" placeholder="description..."></textarea>
+        </div>
+
+        <div class="task_creation_line">
+            <label for="new_task_start">Start</label>
+            <input id="new_task_start" type="date" placeholder="DD/MM/YYYY"/>
+
+            <img id="from_to_arrow" src="#" alt="->"/>
+
+            <label for="new_task_end">End</label>
+            <input id="new_task_end" type="date" placeholder="DD/MM/YYYY"/>
+        </div>
+
+        <div class="task_creation_line">
+            <label for="new_task_category">Category</label>
+            <select id="new_task_category">
+            </select>
+        </div>
+
+        <div class="task_creation_line">
+            <label for="new_task_hash_tags">HashTags</label>
+            <input id="new_task_hash_tags" type="text" placeholder="#hashtag1#hashtag2..."/>
+        </div>
     </section>
 
 </body>

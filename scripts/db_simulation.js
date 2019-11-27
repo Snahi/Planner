@@ -25,7 +25,7 @@ fields:
     start           : Date,
     end             : Date,
     hashTags        : Array<String>,
-    categories      : Array<number>
+    category        : number
  */
 let tasks = [];
 /**
