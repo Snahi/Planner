@@ -7,6 +7,13 @@
     --top_menu_item_padding:    10px;
     /* table header */
     --table_header_height:      60px;
+    --table_header_but_height:  calc(var(--table_header_height) * 0.6);
+    --table_header_but_ver_mar: calc((var(--table_header_height) - var(--table_header_but_height)) / 2);
+    --but_adv_search_width:     160px;
+    --but_new_task_width:       160px;
+    --input_search_width:       200px;
+    --input_search_height:      24px;
+    --input_search_ver_margin:  calc((var(--table_header_height) - var(--input_search_height)) / 2);
     /* categories */
     --categories_width:         20%;
     --category_item_height:     30px;
@@ -33,6 +40,15 @@
     --top_menu_item_hov_color:          var(--bright_color);
     /* table header */
     --table_header_bg_color:            #333333;
+    --but_adv_search_bg:                var(--logo_color);
+    --but_adv_search_color:             var(--top_bar_bg_color);
+    --but_adv_search_bg_hov:            var(--bright_color);
+    --but_new_task_bg:                  var(--logo_color);
+    --but_new_task_color:               var(--top_bar_bg_color);
+    --but_new_task_bg_hov:              var(--bright_color);
+    --input_search_bg:                  #474747;
+    --input_search_border_color:        var(--new_category_input_border_color);
+    --input_search_color:               var(--bright_color);
     /* categories */
     --categories_bg_color:              var(--top_bar_bg_color);
     --categories_menu_bg_color:         var(--top_bar_bg_color);
@@ -102,6 +118,59 @@ h4 {
     width:              100%;
     height:             var(--table_header_height);
     background-color:   var(--table_header_bg_color);
+}
+
+
+#input_search {
+    float:              left;
+    margin:             var(--input_search_ver_margin) 0 var(--input_search_ver_margin) 20px;
+    width:              var(--input_search_width);
+    height:             var(--input_search_height);
+    background-color:   var(--input_search_bg);
+    border:             2px solid var(--input_search_border_color);
+    border-radius:      4px;
+    color:              var(--input_search_color);
+    padding-left:       4px;
+}
+
+
+#but_advanced_search {
+    float:              left;
+    width:              var(--but_adv_search_width);
+    height:             var(--table_header_but_height);
+    background-color:   var(--but_adv_search_bg);
+    margin:             var(--table_header_but_ver_mar) 0 var(--table_header_but_ver_mar) 20px;
+    border-radius:      4px;
+    border:             none;
+    color:              var(--but_adv_search_color);
+    text-align:         center;
+    line-height:        var(--table_header_but_height);
+    cursor:             pointer;
+}
+
+
+#but_advanced_search:hover {
+    background-color:   var(--but_adv_search_bg_hov);
+}
+
+
+#but_create_task {
+    float:              right;
+    width:              var(--but_new_task_width);
+    height:             var(--table_header_but_height);
+    background-color:   var(--but_new_task_bg);
+    margin:             var(--table_header_but_ver_mar) 20px var(--table_header_but_ver_mar) 0;
+    border-radius:      4px;
+    border:             none;
+    color:              var(--but_new_task_color);
+    text-align:         center;
+    line-height:        var(--table_header_but_height);
+    cursor:             pointer;
+}
+
+
+#but_create_task:hover {
+    background-color:   var(--but_new_task_bg_hov);
 }
 
 

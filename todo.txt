@@ -3,3 +3,4 @@
 3. delete move from table to table
 4. delete archive button from category settings
 5. change category delete icon to a trahs bin
+6. change color of text on buttons in table header
