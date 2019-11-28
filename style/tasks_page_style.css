@@ -145,6 +145,12 @@ h4 {
 }
 
 
+.ui-autocomplete {
+    background-color:   var(--input_search_bg);
+    color:              var(--bright_color);
+}
+
+
 #but_advanced_search {
     float:              left;
     width:              var(--but_adv_search_width);

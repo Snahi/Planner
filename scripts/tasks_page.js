@@ -13,6 +13,7 @@ function initTasksPage()
 {
     /* to be removed when we connect with tables page */ initDB();
     loadCategories();
+    updateSearchInputDataSource();
 }
 
 
@@ -48,3 +49,21 @@ function populateCategorySelect()
         categorySelect.appendChild(option);
     })
 }
+
+
+
+/* search tasks //////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+
+function updateSearchInputDataSource()
+{
+    let source = tasks.filter(task => task.tableId = currTableId).map(tk => tk.title);
+
+    $('#input_search').autocomplete({
+        source: source
+    });
+}
+
+
+
