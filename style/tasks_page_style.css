@@ -550,3 +550,12 @@ h4 {
 .search_result:hover {
     background-color:   var(--blue);
 }
+
+
+#result_list span {
+    display:            block;
+    width:              100%;
+    font-size:          26px;
+    font-weight:        bold;
+    text-align:         center;
+}

@@ -161,35 +161,6 @@ function validateDatesAndTimes(start, end, startTime, endTime, startDate, endDat
 }
 
 
-// test if obtain date object works before removing it
-
-// function obtainStartDateObject(startDatStr, startTimStr)
-// {
-//     let startDate = null;
-//     if (startDatStr !== null && startDatStr !== "" && startTimStr !== null && startTimStr !== "")
-//     {
-//         let startDateStr    = startDatStr + " " + startTimStr;
-//         startDate           = Date.parse(startDateStr);
-//     }
-//
-//     return new Date(startDate);
-// }
-//
-//
-//
-// function obtainEndDateObject(endDatStr, endTimStr)
-// {
-//     let endDate = null;
-//     if (endDatStr !== null && endDatStr !== "" && endTimStr !== null && endTimStr !== "")
-//     {
-//         let startDateStr    = endDatStr + " " + endTimStr;
-//         endDate           = Date.parse(startDateStr);
-//     }
-//
-//     return new Date(endDate);
-// }
-
-
 
 function obtainDateObject(dateStr, timeStr)
 {

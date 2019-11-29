@@ -120,6 +120,13 @@ function displaySearchResults(results)
 
     results.forEach(res => list.appendChild(createResultLine(res)));
 
+    if (results.length === 0)
+    {
+        let info = document.createElement("span");
+        info.innerText = "There are no results for specified parameters"
+        list.appendChild(info);
+    }
+
     popup.style.display = "block";
 }
 
@@ -128,7 +135,7 @@ function displaySearchResults(results)
 function createResultLine(task)
 {
     let line = document.createElement("DIV");
-    line.innerText = task.title + " -> " + task.start.toISOString() + " - " + task.end.toISOString();
+    line.innerText = task.title + " -> " + task.start.toLocaleString() + " - " + task.end.toLocaleString();
     line.className = "search_result";
 
     line.onclick = function()
