@@ -46,8 +46,8 @@ function createNewTask()
     let category    = document.getElementById(NEW_TASK_CATEGORY_ID).value;
     let hashTags    = document.getElementById(NEW_TASK_HASH_TAGS_ID).value;
 
-    let startDate   = obtainStartDateObject(startDat, startTim);
-    let endDate     = obtainEndDateObject(endDat, endTim);
+    let startDate   = obtainDateObject(startDat, startTim);
+    let endDate     = obtainDateObject(endDat, endTim);
 
     let hashTagsArr = createHashTagsArray(hashTags);
 
@@ -161,31 +161,48 @@ function validateDatesAndTimes(start, end, startTime, endTime, startDate, endDat
 }
 
 
+// test if obtain date object works before removing it
 
-function obtainStartDateObject(startDatStr, startTimStr)
+// function obtainStartDateObject(startDatStr, startTimStr)
+// {
+//     let startDate = null;
+//     if (startDatStr !== null && startDatStr !== "" && startTimStr !== null && startTimStr !== "")
+//     {
+//         let startDateStr    = startDatStr + " " + startTimStr;
+//         startDate           = Date.parse(startDateStr);
+//     }
+//
+//     return new Date(startDate);
+// }
+//
+//
+//
+// function obtainEndDateObject(endDatStr, endTimStr)
+// {
+//     let endDate = null;
+//     if (endDatStr !== null && endDatStr !== "" && endTimStr !== null && endTimStr !== "")
+//     {
+//         let startDateStr    = endDatStr + " " + endTimStr;
+//         endDate           = Date.parse(startDateStr);
+//     }
+//
+//     return new Date(endDate);
+// }
+
+
+
+function obtainDateObject(dateStr, timeStr)
 {
-    let startDate = null;
-    if (startDatStr !== null && startDatStr !== "" && startTimStr !== null && startTimStr !== "")
+    let date = null;
+    if (dateStr !== null && dateStr !== "" && timeStr !== null && timeStr !== "")
     {
-        let startDateStr    = startDatStr + " " + startTimStr;
-        startDate           = Date.parse(startDateStr);
+        let fullDateStr = dateStr + " " + timeStr;
+        date            = Date.parse(fullDateStr);
+
+        return new Date(date);
     }
-
-    return new Date(startDate);
-}
-
-
-
-function obtainEndDateObject(endDatStr, endTimStr)
-{
-    let endDate = null;
-    if (endDatStr !== null && endDatStr !== "" && endTimStr !== null && endTimStr !== "")
-    {
-        let startDateStr    = endDatStr + " " + endTimStr;
-        endDate           = Date.parse(startDateStr);
-    }
-
-    return new Date(endDate);
+    else
+        return null;
 }
 
 
