@@ -1,27 +1,21 @@
 // CONST
-const CATEGORY_SELECT_ID = "new_task_category";
-const NEW_TASK_TITLE_ID     = "new_task_title";
-const NEW_TASK_DESC_ID      = "new_task_description";
-const NEW_TASK_START_DAT_ID = "new_task_start";
-const NEW_TASK_START_TIM_ID = "new_task_start_time";
-const NEW_TASK_END_DAT_ID   = "new_task_end";
-const NEW_TASK_END_TIM_ID   = "new_task_end_time";
-const NEW_TASK_CATEGORY_ID  = "new_task_category";
-const NEW_TASK_HASH_TAGS_ID = "new_task_hash_tags";
-const HASH_TAGS_SEPARATOR   = "#";
-
-
-
-function onCloseTaskCreationPopupClicked()
-{
-    closeTaskCreationPopup();
-}
+const NEW_TASK_CATEGORY_SELECT_ID   = "new_task_category";
+const NEW_TASK_TITLE_ID             = "new_task_title";
+const NEW_TASK_DESC_ID              = "new_task_description";
+const NEW_TASK_START_DAT_ID         = "new_task_start";
+const NEW_TASK_START_TIM_ID         = "new_task_start_time";
+const NEW_TASK_END_DAT_ID           = "new_task_end";
+const NEW_TASK_END_TIM_ID           = "new_task_end_time";
+const NEW_TASK_CATEGORY_ID          = "new_task_category";
+const NEW_TASK_HASH_TAGS_ID         = "new_task_hash_tags";
+const HASH_TAGS_SEPARATOR           = "#";
 
 
 
 function closeTaskCreationPopup()
 {
-    let elemsToClear = [document.getElementById(NEW_TASK_TITLE_ID),
+    let elemsToClear = [
+        document.getElementById(NEW_TASK_TITLE_ID),
         document.getElementById(NEW_TASK_DESC_ID),
         document.getElementById(NEW_TASK_START_DAT_ID),
         document.getElementById(NEW_TASK_START_TIM_ID),
@@ -177,7 +171,7 @@ function obtainStartDateObject(startDatStr, startTimStr)
         startDate           = Date.parse(startDateStr);
     }
 
-    return startDate;
+    return new Date(startDate);
 }
 
 
@@ -191,7 +185,7 @@ function obtainEndDateObject(endDatStr, endTimStr)
         endDate           = Date.parse(startDateStr);
     }
 
-    return endDate;
+    return new Date(endDate);
 }
 
 

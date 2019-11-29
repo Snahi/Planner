@@ -28,16 +28,22 @@ function loadCategories()
 
 function onNewTaskClicked()
 {
-    populateCategorySelect();
+    populateCategorySelect(document.getElementById(NEW_TASK_CATEGORY_SELECT_ID));
     let newTaskPopup = document.getElementById(TASK_CREATION_POPUP_ID);
     newTaskPopup.style.display = "block";
 }
 
 
 
-function populateCategorySelect()
+function onCloseTaskCreationPopupClicked()
 {
-    let categorySelect          = document.getElementById(CATEGORY_SELECT_ID);
+    closeTaskCreationPopup();
+}
+
+
+
+function populateCategorySelect(categorySelect)
+{
     categorySelect.innerText    = "";   // clear old value
 
     currCategories.forEach(category => {
@@ -58,10 +64,22 @@ function populateCategorySelect()
 
 function updateSearchInputDataSource()
 {
-    let source = tasks.filter(task => task.tableId = currTableId).map(tk => tk.title);
+    let source = tasks.filter(task => task.tableId = currTableId).map(function(tk) {
+        return {
+            label:
+                tk.title + " - " +
+                tk.start.toLocaleDateString() + ", " +
+                (tk.description.length > 40 ? tk.description.substr(0, 37) + "..." : tk.description),
+            value: tk.title,
+            task: tk};
+    });
 
     $('#input_search').autocomplete({
-        source: source
+        source: source,
+        select: function(event, ui)
+            {
+                showTaskDetails(ui.item.task);
+            }
     });
 }
 

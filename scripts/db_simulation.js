@@ -50,9 +50,11 @@ function initDB()
     addCategory(birthdayPartyId, "Music");
 
     addTask(birthdayPartyId, "choose colors", "choose colors of balloons", new Date(), new Date(),
-        ["color", "balloons"], [balloonsId]);
+        ["color", "balloons"], balloonsId);
     addTask(birthdayPartyId, "choose shop", "choose in which shop to buy balloons", new Date(), new Date(),
-        ["buy", "balloons"], [balloonsId]);
+        ["buy", "balloons"], balloonsId);
+    addTask(birthdayPartyId, "order a cake", "1. find a good bakery, 2. decide whether price is good, 3. choose a cake, 4. order invoice, 5. pay",
+        new Date(), new Date(), [], balloonsId);
 }
 
 
@@ -157,9 +159,9 @@ function isCategoryNameUniqueInTable(tableId, categoryName)
  * @param start: date
  * @param end: date
  * @param hashTags: array<string>
- * @param categories: array<number>
+ * @param category: array<number>
  */
-function addTask(tableId, title, description, start, end, hashTags, categories)
+function addTask(tableId, title, description, start, end, hashTags, category)
 {
     let id = generateUniqueId();
 
@@ -171,7 +173,7 @@ function addTask(tableId, title, description, start, end, hashTags, categories)
         start       : start,
         end         : end,
         hashTags    : hashTags,
-        categories  : categories
+        category    : category
     };
 
     tasks.push(newTask);

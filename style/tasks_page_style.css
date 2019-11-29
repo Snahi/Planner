@@ -403,10 +403,10 @@ h4 {
 }
 
 
-/* task creation /////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/* task creation, details ////////////////////////////////////////////////////////////////////////////////////////////*/
 
 
-#task_creation_popup {
+#task_creation_popup, #task_details_popup {
     display:            none;
     position:           fixed;
     top:                calc((100% - var(--tsk_creation_popup_height)) / 2);
@@ -421,7 +421,7 @@ h4 {
 }
 
 
-#task_creation_popup>div {
+#task_creation_popup>div, #task_details_popup>div {
     display:            flex;
     flex-direction:     column;
     align-items:        center;
@@ -440,7 +440,7 @@ h4 {
 }
 
 
-.task_creation_line>label:not(#new_task_end_label) {
+.task_creation_line>label:not(#new_task_end_label):not(#task_end_label) {
     display:            inline-block;
     width:              var(--tsk_creation_line_label_width);
 }
@@ -451,26 +451,26 @@ h4 {
 }
 
 
-.task_creation_line>input:not(#new_task_start):not(#new_task_end):not(#new_task_start_time):not(#new_task_end_time),
+.task_creation_line>input:not(#new_task_start):not(#new_task_end):not(#new_task_start_time):not(#new_task_end_time):not(#task_start):not(#task_end):not(#task_start_time):not(#task_end_time),
 .task_creation_line>textarea,
 .task_creation_line>select {
     width:              var(--tsk_creation_input_width);
 }
 
 
-#new_task_description_line {
+#new_task_description_line, #task_description_line {
     display:            flex;
     flex-direction:     row;
     align-items:        start;
 }
 
 
-#new_task_description {
+#new_task_description, #task_description {
     height:             var(--new_task_description_height);
 }
 
 
-#but_create_new_task {
+#but_create_new_task, #but_save_task_changes {
     width:              var(--but_new_task_width);
     height:             var(--but_create_new_task_height);
     background-color:   var(--but_new_task_bg);
@@ -484,25 +484,25 @@ h4 {
 }
 
 
-#but_create_new_task:hover {
+#but_create_new_task:hover, #but_save_task_changes:hover {
     background-color:   var(--but_new_task_bg_hov);
     color:              var(--but_new_task_bg);
 }
 
 
-#from_to_arrow {
+.from_to_arrow {
     height:             var(--tsk_creation_input_height);
     width:              auto;
     margin:             0 5px 0 5px;
 }
 
 
-#new_task_end_label {
+#new_task_end_label, #task_end_label {
     margin-right:       5px;
 }
 
 
-#but_close {
+#but_close, #but_close_task_details {
     position:           absolute;
     top:                5px;
     right:              5px;
@@ -511,7 +511,7 @@ h4 {
 }
 
 
-#but_close:hover {
+#but_close:hover, #but_close_task_details {
     width:              16px;
     top:                6px;
     right:              6px;
