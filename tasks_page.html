@@ -113,11 +113,12 @@
     <!-- popups ------------------------------------------------------------------------------------------------------->
 
     <!-- task creation popup -------------------------------------------------------------------------------->
-    <section id="task_creation_popup">
+    <section id="task_creation_popup" class="popup">
         <!-- for some reason without this div in Firefox not every elements are visible if screen is too small - cannot
         scroll to first element -->
         <div>
-            <img id="but_close" src="images/close.png" alt="x" onclick="onCloseTaskCreationPopupClicked()"/>
+            <img id="but_close" class="but_close_popup" src="images/close.png" alt="x"
+                 onclick="onCloseTaskCreationPopupClicked()"/>
 
             <div id="new_task_title_line" class="task_creation_line">
                 <label for="new_task_title">Title</label>
@@ -160,11 +161,12 @@
     </section>
 
     <!-- task details -------------------------------------------------------------------------------------------->
-    <section id="task_details_popup">
+    <section id="task_details_popup" class="popup">
         <!-- for some reason without this div in Firefox not every elements are visible if screen is too small - cannot
         scroll to first element -->
         <div>
-            <img id="but_close_task_details" src="images/close.png" alt="x" onclick="hideDetailsPopup()"/>
+            <img id="but_close_task_details" class="but_close_popup" src="images/close.png" alt="x"
+                 onclick="hideDetailsPopup()"/>
 
             <div class="task_creation_line">
                 <label for="task_title">Title</label>
@@ -207,11 +209,12 @@
     </section>
 
     <!-- advanced search popup ------------------------------------------------------------------------------->
-    <section id="advanced_search_popup">
+    <section id="advanced_search_popup" class="popup">
         <!-- for some reason without this div in Firefox not every elements are visible if screen is too small - cannot
         scroll to first element -->
         <div>
-            <img id="but_close_advanced_search_popup" src="images/close.png" alt="x" onclick="hideAdvancedSearchPopup()"/>
+            <img id="but_close_advanced_search_popup" class="but_close_popup" src="images/close.png" alt="x"
+                 onclick="hideAdvancedSearchPopup()"/>
 
             <div class="task_creation_line">
                 <label for="searched_title">Title</label>
@@ -248,7 +251,21 @@
             </div>
 
             <div id="but_search" onclick="onSearchButtonClicked()">
-                Save changes
+                Search
+            </div>
+        </div>
+    </section>
+
+    <!-- advanced search result popup -------------------------------------------------------------------------->
+    <section id="advanced_search_result_popup" class="popup">
+        <img id="but_close_search_result_popup" class="but_close_popup" src="images/close.png" alt="x"
+             onclick="hideResultsPopup()"/>
+        <!-- for some reason without this div in Firefox not every elements are visible if screen is too small - cannot
+        scroll to first element -->
+        <div>
+
+            <div id="result_list">
+
             </div>
         </div>
     </section>

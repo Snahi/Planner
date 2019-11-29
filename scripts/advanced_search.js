@@ -11,6 +11,8 @@ const SEARCHED_CATEGORY_ID                  = "searched_category";
 const SEARCHED_HASH_TAGS_ID                 = "searched_hash_tags";
 const TIME_ZERO                             = "0:0";
 const DATE_ZERO                             = "1970-1-1";
+const SEARCH_RES_POPUP_ID                   = "advanced_search_result_popup";
+const RESULT_LIST_ID                        = "result_list";
 
 
 
@@ -54,7 +56,8 @@ function onSearchButtonClicked()
         obtainDateObject(DATE_ZERO, startTim), obtainDateObject(endDat, TIME_ZERO), obtainDateObject(DATE_ZERO, endTim),
         category, createHashTagsArray(hashTags));
 
-    console.log(searchRes);
+    hideAdvancedSearchPopup();
+    displaySearchResults(searchRes);
 }
 
 
@@ -105,4 +108,42 @@ function compareTimeWithoutDate(date1, date2)
 {
     return date1.getHours() === date2.getHours() &&
         date1.getMinutes() === date2.getMinutes();
+}
+
+
+
+function displaySearchResults(results)
+{
+    let popup = document.getElementById(SEARCH_RES_POPUP_ID);
+    let list = document.getElementById(RESULT_LIST_ID);
+    list.innerHTML = "";
+
+    results.forEach(res => list.appendChild(createResultLine(res)));
+
+    popup.style.display = "block";
+}
+
+
+
+function createResultLine(task)
+{
+    let line = document.createElement("DIV");
+    line.innerText = task.title + " -> " + task.start.toISOString() + " - " + task.end.toISOString();
+    line.className = "search_result";
+
+    line.onclick = function()
+    {
+        hideResultsPopup();
+        showTaskDetails(task)
+    };
+
+    return line;
+}
+
+
+
+function hideResultsPopup()
+{
+    let popup = document.getElementById(SEARCH_RES_POPUP_ID);
+    popup.style.display = "none";
 }

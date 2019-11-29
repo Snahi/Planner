@@ -76,8 +76,8 @@ function editTask(task)
     let category    = document.getElementById(TASK_CATEGORY_ID).value;
     let hashTags    = document.getElementById(TASK_HASH_TAGS_ID).value;
 
-    let startDate   = obtainStartDateObject(startDat, startTim);
-    let endDate     = obtainEndDateObject(endDat, endTim);
+    let startDate   = obtainDateObject(startDat, startTim);
+    let endDate     = obtainDateObject(endDat, endTim);
 
     let hashTagsArr = createHashTagsArray(hashTags);
 

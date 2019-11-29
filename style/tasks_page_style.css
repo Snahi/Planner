@@ -36,6 +36,8 @@
     --tsk_creation_input_height:        20px;
     --new_task_description_height:      200px;
     --but_create_new_task_height:       40px;
+    /* search results popup */
+    --result_height:                    40px;
 
     /* colors ////////////////////////////////////////////////////////////// */
     /* general */
@@ -406,7 +408,7 @@ h4 {
 /* task creation, details ////////////////////////////////////////////////////////////////////////////////////////////*/
 
 
-#task_creation_popup, #task_details_popup, #advanced_search_popup {
+.popup {
     display:            none;
     position:           fixed;
     top:                calc((100% - var(--tsk_creation_popup_height)) / 2);
@@ -421,7 +423,7 @@ h4 {
 }
 
 
-#task_creation_popup>div, #task_details_popup>div, #advanced_search_popup>div {
+.popup>div {
     display:            flex;
     flex-direction:     column;
     align-items:        center;
@@ -502,7 +504,7 @@ h4 {
 }
 
 
-#but_close, #but_close_task_details, #but_close_advanced_search_popup {
+.but_close_popup {
     position:           absolute;
     top:                5px;
     right:              5px;
@@ -511,8 +513,40 @@ h4 {
 }
 
 
-#but_close:hover, #but_close_task_details:hover, #but_close_advanced_search_popup:hover {
+.but_close_popup:hover {
     width:              16px;
     top:                6px;
     right:              6px;
+}
+
+
+/* advanced search result ////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+#result_list {
+    display:            flex;
+    flex-direction:     column;
+    width:              calc(0.9 * var(--tsk_creation_popup_width));
+    max-height:         calc(0.8 * var(--tsk_creation_popup_height));
+    overflow:           auto;
+}
+
+
+.search_result {
+    display:            block;
+    width:              100%;
+    height:             var(--result_height);
+    border-bottom:      1px solid gray;
+    cursor:             pointer;
+    line-height:        var(--result_height);
+}
+
+
+.search_result:first-child {
+    border-top:         1px solid gray;
+}
+
+
+.search_result:hover {
+    background-color:   var(--blue);
 }
