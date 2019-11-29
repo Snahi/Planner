@@ -68,6 +68,7 @@ function createNewTask()
     {
         addTask(currTableId, title, desc, startDate, endDate, hashTagsArr, category);
         closeTaskCreationPopup();
+        updateSearchInputDataSource();
         window.alert("Task created");
     }
 }
