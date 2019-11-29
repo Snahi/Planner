@@ -37,6 +37,7 @@
     <script src="scripts/timeline.js"></script>
     <script src="scripts/task_creation.js"></script>
     <script src="scripts/task_details.js"></script>
+    <script src="scripts/advanced_search.js"></script>
 
 </head>
 <body onload="initTasksPage()">
@@ -59,7 +60,7 @@
 
     <section id="table_header">
         <input id="input_search" type="text" placeholder="search..."/>
-        <div id="but_advanced_search">
+        <div id="but_advanced_search" onclick="showAdvancedSearchPopup()">
             Advanced search
         </div>
 
@@ -205,5 +206,51 @@
         </div>
     </section>
 
+    <!-- advanced search popup ------------------------------------------------------------------------------->
+    <section id="advanced_search_popup">
+        <!-- for some reason without this div in Firefox not every elements are visible if screen is too small - cannot
+        scroll to first element -->
+        <div>
+            <img id="but_close_advanced_search_popup" src="images/close.png" alt="x" onclick=""/>
+
+            <div class="task_creation_line">
+                <label for="searched_title">Title</label>
+                <input id="searched_title" type="text" placeholder="search by title..." pattern="^[a-zA-Z 0-9]{1,30}$"/>
+            </div>
+
+            <div id="searched_description_line" class="task_creation_line">
+                <label for="searched_description">Description</label>
+                <textarea id="searched_description" placeholder="search by description..." maxlength="2000"></textarea>
+            </div>
+
+            <div class="task_creation_line">
+                <label for="searched_start_date">Start</label>
+                <input id="searched_start_date" type="date"/>
+                <input id="searched_start_time" type="time" placeholder="gg:hh"/>
+
+                <img class="from_to_arrow" src="images/arrow_right.png" alt="->"/>
+
+                <label id="searched_end_date_label" for="searched_end_date">End</label>
+                <input id="searched_end_date" type="date"/>
+                <input id="searched_end_time" type="time" placeholder="gg:hh"/>
+            </div>
+
+            <div class="task_creation_line">
+                <label for="searched_category">Category</label>
+                <select id="searched_category">
+                </select>
+            </div>
+
+            <div class="task_creation_line">
+                <label for="searched_hash_tags">HashTags</label>
+                <input id="searched_hash_tags" type="text" placeholder="#hashtag1#hashtag2..."
+                       pattern="^[a-zA-Z0-9#]{0,100}$"/>
+            </div>
+
+            <div id="but_search" onclick="">
+                Save changes
+            </div>
+        </div>
+    </section>
 </body>
 </html>
