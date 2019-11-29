@@ -8,6 +8,7 @@ const TASK_END_TIM_ID           = "task_end_time";
 const TASK_CATEGORY_ID          = "task_category";
 const TASK_HASH_TAGS_ID         = "task_hash_tags";
 const TASK_DETAILS_POPUP_ID     = "task_details_popup";
+const BUT_SAVE_ID               = "but_save_task_changes";
 
 
 
@@ -33,6 +34,31 @@ function showTaskDetails(task)
     hashTags.value  = task.hashTags.reduce(((acc, hash) => acc + "#" + hash), "");
 
     document.getElementById(TASK_DETAILS_POPUP_ID).style.display = "block";
+
+    setSaveButtonListener(task);
+}
+
+
+
+function hideDetailsPopup()
+{
+    document.getElementById(TASK_DETAILS_POPUP_ID).style.display="none";
+}
+
+
+
+function setSaveButtonListener(task)
+{
+    let butSave = document.getElementById(BUT_SAVE_ID);
+
+    butSave.onclick = function()
+    {
+        let editRes = editTask(task);
+        if (editRes)
+        {
+            hideDetailsPopup();
+        }
+    }
 }
 
 
@@ -61,12 +87,15 @@ function editTask(task)
     if (!validationResult[0])
     {
         window.alert("Errors occurred: " + validationResult[1]);
+
+        return false;
     }
     else
     {
         updateTask(task, title, desc, startDate, endDate, hashTagsArr, category);
         updateSearchInputDataSource();
-        window.alert("Task updated");
+
+        return true;
     }
 }
 
