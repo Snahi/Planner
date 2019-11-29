@@ -85,3 +85,10 @@ function updateSearchInputDataSource()
 
 
 
+function hideDetailsPopup()
+{
+    document.getElementById(TASK_DETAILS_POPUP_ID).style.display="none";
+}
+
+
+

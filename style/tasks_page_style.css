@@ -511,7 +511,7 @@ h4 {
 }
 
 
-#but_close:hover, #but_close_task_details {
+#but_close:hover, #but_close_task_details:hover {
     width:              16px;
     top:                6px;
     right:              6px;
