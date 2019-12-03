@@ -117,6 +117,7 @@ function validateNewTaskData(title, startDate, endDate, startDatStr, endDatStr, 
         message += hashTagsValRes[1];
     }
 
+
     return [isValid, message];
 }
 
