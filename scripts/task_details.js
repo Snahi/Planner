@@ -98,15 +98,3 @@ function editTask(task)
         return true;
     }
 }
-
-
-
-function updateTask(task, title, description, start, end, hashTags, category)
-{
-    task.title          = title;
-    task.description    = description;
-    task.start          = start;
-    task.end            = end;
-    task.hashTags       = hashTags;
-    task.categories     = category;
-}
