@@ -48,13 +48,13 @@ function initDB()
 
     let balloonsId = addCategory(birthdayPartyId, "Balloons");
     addCategory(birthdayPartyId, "Music");
-
-    addTask(birthdayPartyId, "choose colors", "choose colors of balloons", new Date(), new Date(),
+    addTask(birthdayPartyId, "choose colors", "choose colors of balloons", new Date(), new Date().setDate(new Date().getDate() + 1),
         ["color", "balloons"], balloonsId);
     addTask(birthdayPartyId, "choose shop", "choose in which shop to buy balloons", new Date(), new Date(),
         ["buy", "balloons"], balloonsId);
     addTask(birthdayPartyId, "order a cake", "1. find a good bakery, 2. decide whether price is good, 3. choose a cake, 4. order invoice, 5. pay",
         new Date(), new Date(), [], balloonsId);
+    calendar.render();
 }
 
 
@@ -117,7 +117,7 @@ function addCategory(tableId, name)
     };
 
     categories.push(newCategory);
-
+    addResource(newCategory);
     return id;
 }
 
@@ -159,7 +159,7 @@ function isCategoryNameUniqueInTable(tableId, categoryName)
  * @param start: date
  * @param end: date
  * @param hashTags: array<string>
- * @param category: array<number>
+ * @param category: number
  */
 function addTask(tableId, title, description, start, end, hashTags, category)
 {
@@ -177,7 +177,7 @@ function addTask(tableId, title, description, start, end, hashTags, category)
     };
 
     tasks.push(newTask);
-
+    addEvent(id, title, start, end, category);
     return id;
 }
 
