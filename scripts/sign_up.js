@@ -1,4 +1,9 @@
-var show_counter=0;
+// CONST
+let MIN_PASS_LEN = 6;
+let MAX_PASS_LEN = 20;
+
+
+let show_counter=0;
 
 function changeCursor(){
 			document.body.style.cursor = "pointer";
@@ -23,7 +28,10 @@ Checking that the pattern is correct and that the passwords are the same
 
 function check_pass(id1,id2)
 {
-    return document.getElementById(id1).value === document.getElementById(id2).value;
+    let pass        = document.getElementById(id1).value;
+    let confPass    = document.getElementById(id2).value;
+
+    return pass === confPass && pass.length >= MIN_PASS_LEN && pass.length <= MAX_PASS_LEN;
 }
 
 function checkPattern()
@@ -42,7 +50,7 @@ function check_everything(id1,id2)
 	{
 	    let isEmailUnique = register(document.getElementById("sign_up_email").value,
             document.getElementById("sign_up_pass").value);
-	    
+
 	    if (isEmailUnique)
         {
             window.location.href = "tasks_page.html";  // TODO should be tables page
@@ -58,7 +66,8 @@ function check_everything(id1,id2)
 	{
         document.getElementById(id1).value = "";
         document.getElementById(id2).value = "";
-        alert("the passwords are not the same, please try again");
+        alert("password must be have at least " + MIN_PASS_LEN + " characters and " + MAX_PASS_LEN + " at most. " +
+            "Also passwords must be the same, please try again");
 	}
 	
 }
