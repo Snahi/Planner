@@ -85,3 +85,14 @@ function updateSearchInputDataSource()
 
 
 
+/* sign out //////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+
+function signOut()
+{
+    window.location.href = 'homepage.html';
+}
+
+
+

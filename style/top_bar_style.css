@@ -42,6 +42,7 @@
     color:              var(--top_menu_item_color);
     text-align:         center;
     line-height:        var(--top_bar_height);
+    cursor:             pointer;
 }
 
 
