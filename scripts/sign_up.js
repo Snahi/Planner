@@ -40,11 +40,16 @@ function check_everything(id1,id2)
 {
 	if(check_pass(id1,id2) && checkPattern())
 	{
-        register(document.getElementById("sign_up_email").value,
+	    let isEmailUnique = register(document.getElementById("sign_up_email").value,
             document.getElementById("sign_up_pass").value);
-        window.location.href = "tasks_page.html";   // TODO should be tables page
+	    
+	    if (isEmailUnique)
+        {
+            window.location.href = "tasks_page.html";  // TODO should be tables page
+        }
 	}
-	if(!checkPattern()){
+	if(!checkPattern())
+	{
         document.getElementById(id1).value = "";
         document.getElementById(id2).value = "";
         alert("the email doesnt correspond to the pattern, please try again");
@@ -78,6 +83,8 @@ function register(email, password)
     {
         window.alert("user with such email already exists");
     }
+
+    return isEmailUnique;
 }
 
 
