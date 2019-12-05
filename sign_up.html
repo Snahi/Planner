@@ -31,22 +31,22 @@
             <span>Planner</span>
         </div>
 		<div>
-        <nav id="top_menu">
-			
-            <a class="top_menu_item" id="sign_in" onmouseover=changeCursor() onmouseout=restoreCursor() >Sign in</a>
-            <a class="top_menu_item" id="sign_up" onmouseover=changeCursor() onmouseout=restoreCursor() onclick=show_sign_up("sign_up_hide")>Sign up</a>
-        </nav>
+			<nav id="top_menu">
+
+				<a class="top_menu_item" id="sign_in" onmouseover="changeCursor()" onmouseout="restoreCursor()" >Sign in</a>
+				<a class="top_menu_item" id="sign_up" onmouseover="changeCursor()" onmouseout="restoreCursor()"
+				   onclick="show_sign_up('sign_up_hide')">Sign up</a>
+			</nav>
 		</div>
 		<div id="sign_up_hide">
-		<input class="sign_up_text_box" id="sign_up_email" type="email" placeholder="i.e.name@domain.com"
-		pattern="^[a-zA-Z0-9.]{1,64}@[a-zA-Z0-0.]{1,254}$" required
-		/><br>
-		
-		<input class="sign_up_text_box" id="sign_up_pass" type="password" placeholder="Password..." >
-		<br>
-		<input class="sign_up_text_box" id="sign_up_conf" type="password" placeholder="Confirm Password..."/>
-		<br>
-		<button class="sign_up_buton" onclick=check_everything("sign_up_pass","sign_up_conf")>Sign Up </button>
+			<input class="sign_up_text_box" id="sign_up_email" type="email" placeholder="i.e.name@domain.com"
+			pattern="^[a-zA-Z0-9.]{1,64}@[a-zA-Z0-0.]{1,254}$" required/>
+			<br>
+			<input class="sign_up_text_box" id="sign_up_pass" type="password" placeholder="Password..." >
+			<br>
+			<input class="sign_up_text_box" id="sign_up_conf" type="password" placeholder="Confirm Password..."/>
+			<br>
+			<button class="sign_up_buton" onclick=check_everything("sign_up_pass","sign_up_conf")>Sign Up </button>
 		
 		</div>
     </header>

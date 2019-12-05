@@ -21,42 +21,39 @@ function show_sign_up(id){
 Checking that the pattern is correct and that the passwords are the same
 *//////////////////////////////////////////////////////////////
 
-function check_pass(id1,id2){
-			if(document.getElementById(id1).value == document.getElementById(id2).value){
-				return true;
-				
-			}
-			else{
-				return false;
-			}
+function check_pass(id1,id2)
+{
+    return document.getElementById(id1).value === document.getElementById(id2).value;
 }
 
-function checkPattern(){
-        var elem = document.getElementById("sign_up_email");
+function checkPattern()
+{
+    let elem = document.getElementById("sign_up_email");
 
-        var pattern = elem.pattern;
-        var re = new RegExp(pattern);
-        if (re.test(elem.value)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    let pattern = elem.pattern;
+    let re = new RegExp(pattern);
 
-function check_everything(id1,id2){
-	if(check_pass(id1,id2)==true && checkPattern()==true){
-			    register(document.getElementById("sign_up_email").value,document.getElementById("sign_up_pass").value);
-				window.location.href = "tasks_page.html";
+    return re.test(elem.value);
+}
+
+function check_everything(id1,id2)
+{
+	if(check_pass(id1,id2) && checkPattern())
+	{
+        register(document.getElementById("sign_up_email").value,
+            document.getElementById("sign_up_pass").value);
+        window.location.href = "tasks_page.html";   // TODO should be tables page
 	}
-	if(checkPattern()==false){
-				document.getElementById(id1).value = "";
-				document.getElementById(id2).value = "";
-				alert("the email doesnt correspond to the pattern, please try again");
+	if(!checkPattern()){
+        document.getElementById(id1).value = "";
+        document.getElementById(id2).value = "";
+        alert("the email doesnt correspond to the pattern, please try again");
 	}
-	if(check_pass(id1,id2)==false && checkPattern()==true){
-				document.getElementById(id1).value = "";
-				document.getElementById(id2).value = "";
-				alert("the passwords are not the same, please try again");
+	if(!check_pass(id1,id2) && checkPattern())
+	{
+        document.getElementById(id1).value = "";
+        document.getElementById(id2).value = "";
+        alert("the passwords are not the same, please try again");
 	}
 	
 }
@@ -66,7 +63,8 @@ function check_everything(id1,id2){
 												REGISTRATION CODE
 *//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const USER_DATA_SEPARATOR         = "&";
+const USER_DATA_SEPARATOR = "&";
+
 function register(email, password)
 {
     let isEmailUnique = obtainUser(email) === null;
