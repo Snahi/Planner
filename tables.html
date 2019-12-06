@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Tables page</title>
+
+    <!--fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Muli|Open+Sans&display=swap" rel="stylesheet">
+
+    <!--libraries-->
+    <link href='fullcalendar-scheduler-4.3.1/packages/core/main.css' rel='stylesheet' />
+    <link href="fullcalendar-scheduler-4.3.1/packages-premium/timeline/main.css" rel="stylesheet">
+    <link href="fullcalendar-scheduler-4.3.1/packages-premium/resource-timeline/main.css" rel="stylesheet">
+
+    <script src='fullcalendar-scheduler-4.3.1/packages/core/main.js'></script>
+    <script src="fullcalendar-scheduler-4.3.1/packages-premium/timeline/main.js"></script>
+    <script src="fullcalendar-scheduler-4.3.1/packages-premium/resource-common/main.js"></script>
+    <script src="fullcalendar-scheduler-4.3.1/packages-premium/resource-timeline/main.js"></script>
+    <script src="fullcalendar-scheduler-4.3.1/packages/interaction/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="style/tables_style.css"/>
+    <link rel="stylesheet" href="style/top_bar_style.css" />
+    <link rel="stylesheet" href="style/timeline.css" />
+
+    <!-- scripts -->
+    <script src="scripts/db_simulation.js"></script>
+    <script src="scripts/tables.js"></script>
+    <script src="scripts/categories.js"></script>
+    <script src="scripts/string_utils.js"></script>
+    <script src="scripts/timeline.js"></script>
+    <script src="scripts/task_creation.js"></script>
+    <script src="scripts/task_details.js"></script>
+    <script src="scripts/advanced_search.js"></script>
+
+</head>
+<body onload="initial_show_table_elements()">
+    <header id="top_bar">
+        <div id="logo">
+            <img src="images/logo.png" alt="logo"/>
+            <span>Planner</span>
+        </div>
+        <nav id="top_menu">
+            <a class="top_menu_item">Tables</a>
+            <a class="top_menu_item">Archive</a>
+            <a class="top_menu_item">Contacts</a>
+            <a class="top_menu_item">Notifications</a>
+            <a class="top_menu_item">Messages</a>
+            <a class="top_menu_item">Profile</a>
+            <a class="top_menu_item">Sign out</a>
+        </nav>
+    </header>
+
+    <section id="table_header">
+
+      <br></br>
+
+      <div id ="tables_above"> Tables</div>
+
+      <input id="table_input" onfocus="this.value=''" type="text" placeholder="New Table name..."/>
+
+      <div id="but_advanced_search" onclick=create_new_table("table_input");>
+            Create Table
+      </div>
+
+      <div id="but_advanced_search" onclick=remove_tables();>
+            Remove All Tables
+      </div>
+
+    </section>
+
+    <!-- container ---------------------------------------------------------------------------------------------------->
+  <section id="table_search" >
+
+    <container class="flex-container">
+
+    </container>
+
+  </section>
+
+</body>
+</html>
