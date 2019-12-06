@@ -23,6 +23,7 @@ function showTaskDetails(task)
     let category    = document.getElementById(TASK_CATEGORY_ID);
     let hashTags    = document.getElementById(TASK_HASH_TAGS_ID);
 
+    console.log(task);
     title.value     = task.title;
     desc.value      = task.description;
     startDat.value  = task.start.toISOString().slice(0, 10);
@@ -47,8 +48,7 @@ function hideDetailsPopup()
 
 
 
-function setSaveButtonListener(task)
-{
+function setSaveButtonListener(task){
     let butSave = document.getElementById(BUT_SAVE_ID);
 
     butSave.onclick = function()
@@ -94,7 +94,14 @@ function editTask(task)
     {
         updateTask(task, title, desc, startDate, endDate, hashTagsArr, category);
         updateSearchInputDataSource();
-
+        calendar.getEventById(task.id).remove();
+        calendar.addEvent({
+            id: task.id,
+            title: task.title,
+            start: task.start,
+            end: task.end,
+            resourceId: task.category
+        });
         return true;
     }
 }

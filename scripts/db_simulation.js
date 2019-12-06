@@ -48,7 +48,7 @@ function initDB()
 
     let balloonsId = addCategory(birthdayPartyId, "Balloons");
     addCategory(birthdayPartyId, "Music");
-    addTask(birthdayPartyId, "choose colors", "choose colors of balloons", new Date(), new Date().setDate(new Date().getDate() + 1),
+    addTask(birthdayPartyId, "choose colors", "choose colors of balloons", new Date(), new Date(),
         ["color", "balloons"], balloonsId);
     addTask(birthdayPartyId, "choose shop", "choose in which shop to buy balloons", new Date(), new Date(),
         ["buy", "balloons"], balloonsId);
@@ -126,6 +126,8 @@ function addCategory(tableId, name)
 function deleteCategory(categoryId)
 {
     categories = categories.filter(category => category.id !== categoryId);
+    console.log(calendar.getResourceById(categoryId));
+    calendar.getResourceById(categoryId).remove();
 }
 
 
@@ -195,6 +197,14 @@ function getAllTasks()
     return tasks;
 }
 
+function getTaskById(id) {
+    for (let t in tasks) {
+        if (tasks[t].id.toString() === id) {
+            return tasks[t];
+        }
+    }
+}
+
 
 
 function updateTask(task, title, description, start, end, hashTags, category)
@@ -204,7 +214,7 @@ function updateTask(task, title, description, start, end, hashTags, category)
     task.start          = start;
     task.end            = end;
     task.hashTags       = hashTags;
-    task.categories     = category;
+    task.category        = category;
 }
 
 

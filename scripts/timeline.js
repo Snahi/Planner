@@ -12,6 +12,26 @@ document.addEventListener('DOMContentLoaded', function() {
         eventResourceEditable: true,
         slotDuration: {day: 1},
         resourceLabelText: 'Categories',
+        //resourceAreaWidth: "0%",
+        resourcesInitiallyExpanded: false,
+        eventClick: function(info) {
+            showTaskDetails(getTaskById(info.event.id));
+        },
+        eventResize: function(info) {
+            let event = info.event;
+            let task = getTaskById(event.id);
+            updateTask(task, event.title, task.description, event.start, event.end, task.hashTags, task.category);
+            updateSearchInputDataSource();
+        },
+        eventDrop: function(info) {
+            let event = info.event;
+            let task = getTaskById(event.id);
+            let oldDate = new Date(task.end);
+            let newDate = new Date(oldDate.setDate(oldDate.getDate() + info.delta.days));
+            updateTask(task, event.title, task.description, event.start, oldDate, task.hashTags, info.newResource._resource.id);
+            updateSearchInputDataSource();
+        }
+
     });
     calendar.render();
 
@@ -45,4 +65,23 @@ function addResource(category) {
         title: category.name,
         eventBackgroundColor: category.color
     })
+}
+
+function hideEventsByResource(resourceId) {
+    console.log(resourceId);
+    let eventsToHide = calendar.getResourceById(resourceId).getEvents();
+    eventsToHide.forEach(event => {
+        event.eventColor = 'rgba(0,0,0,0)';
+        event.eventTextColor = 'rgba(0,0,0,0)';
+    });
+}
+
+function showEventsByResource(resourceId) {
+    console.log(resourceId);
+    let resource = calendar.getResourceById(resourceId);
+    resource.getEvents().forEach(event => {
+        event.eventBackgroundColor = resource.eventBackgroundColor;
+        event.eventBorderColor = resource.eventBorderColor;
+        event.eventTextVolor = resource.eventTextColor;
+    });
 }

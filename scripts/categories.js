@@ -110,6 +110,7 @@ function selectCategory(category, categoryDiv, categoryColorDiv, categorySett)
 
     selectedCategories.push(category);
     category.isSelected = true;
+    showEventsByResource(category.id);
 }
 
 
@@ -131,6 +132,8 @@ function deselectCategory(category, categoryDiv, categoryColorDiv, categorySett)
     // remove from selected categories
     selectedCategories  = selectedCategories.filter(selectedCategory => selectedCategory.id !== category.id);
     category.isSelected = false;
+
+    hideEventsByResource(category.id);
 }
 
 
@@ -240,6 +243,7 @@ function createDeleteCategoryButton(category)
 
 function onDeleteCategoryButtonClicked(category)
 {
+    console.log("oh");
     deleteCategory(category.id);
     refreshCategories();
 }
