@@ -1,71 +1,89 @@
 // CONST
-let MIN_PASS_LEN = 6;
-let MAX_PASS_LEN = 20;
+const MIN_PASS_LEN      = 6;
+const MAX_PASS_LEN      = 20;
+const SIGN_IN_POPUP_ID  = "sign_in_hide";
+
+// global variables
+let show_counter = 0;   // used to determine whether sign up popup is open or closed. 0 -> closed, 1 -> opened
 
 
-let show_counter=0;
 
-function changeCursor(){
-			document.body.style.cursor = "pointer";
-			}
-			
-function restoreCursor(){
-			document.body.style.cursor = "auto";
-			}
-function show_sign_up(id){
-			if(show_counter==0){
-			document.getElementById(id).style.visibility = "visible";
-			show_counter++;
-			}else{
-				document.getElementById(id).style.visibility = "hidden";
-			show_counter--;
-			}
+function show_sign_up(id)
+{
+    if(show_counter === 0)
+    {
+        // first hide sign in popup (no matter if is opened)
+        document.getElementById(SIGN_IN_POPUP_ID).style.display = "none";
+        show_counter_sign_in = 0;
+
+        // show sign up popup
+        document.getElementById(id).style.display = "block";
+        show_counter = 1;
+    }
+    else
+    {
+        document.getElementById(id).style.display = "none";
+        show_counter = 0;
+    }
 }
+
+
 
 /*/////////////////////////////////////
 Checking that the pattern is correct and that the passwords are the same
 *//////////////////////////////////////////////////////////////
 
-function check_pass(id1,id2)
+
+
+function check_pass(passwordId, confirmedPasswordId)
 {
-    let pass        = document.getElementById(id1).value;
-    let confPass    = document.getElementById(id2).value;
+    let pass        = document.getElementById(passwordId).value;
+    let confPass    = document.getElementById(confirmedPasswordId).value;
 
     return pass === confPass && pass.length >= MIN_PASS_LEN && pass.length <= MAX_PASS_LEN;
 }
 
-function checkPattern()
+
+
+function checkEmailPattern(emailId)
 {
-    let elem = document.getElementById("sign_up_email");
+    let emailElem = document.getElementById(emailId);
 
-    let pattern = elem.pattern;
-    let re = new RegExp(pattern);
+    let pattern = emailElem.pattern;
+    let re      = new RegExp(pattern);
 
-    return re.test(elem.value);
+    return re.test(emailElem.value);
 }
 
-function check_everything(id1,id2)
+
+
+function validateAndRegister(passwordId, confirmedPasswordId, emailId)
 {
-	if(check_pass(id1,id2) && checkPattern())
+    let isEmailValid = checkEmailPattern(emailId);
+    let isPasswordValid = check_pass(passwordId, confirmedPasswordId);
+
+	if(isPasswordValid && isEmailValid)
 	{
-	    let isEmailUnique = register(document.getElementById("sign_up_email").value,
+	    let isEmailUnique = register(document.getElementById(emailId).value,
             document.getElementById("sign_up_pass").value);
 
 	    if (isEmailUnique)
         {
-            window.location.href = "tasks_page.html";  // TODO should be tables page
+            window.location.href = "tables.html";
+        }
+	    else
+        {
+            alert("user with such email already exists");
         }
 	}
-	if(!checkPattern())
+	else if(!isEmailValid)
 	{
-        document.getElementById(id1).value = "";
-        document.getElementById(id2).value = "";
         alert("the email doesnt correspond to the pattern, please try again");
 	}
-	if(!check_pass(id1,id2) && checkPattern())
+	else if(!isPasswordValid)
 	{
-        document.getElementById(id1).value = "";
-        document.getElementById(id2).value = "";
+        document.getElementById(passwordId).value = "";
+        document.getElementById(confirmedPasswordId).value = "";
         alert("password must be have at least " + MIN_PASS_LEN + " characters and " + MAX_PASS_LEN + " at most. " +
             "Also passwords must be the same, please try again");
 	}
@@ -74,10 +92,11 @@ function check_everything(id1,id2)
 
 
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-												REGISTRATION CODE
+												REGISTRATION / COOKIES CODE
 *//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 const USER_DATA_SEPARATOR = "&";
+
+
 
 function register(email, password)
 {

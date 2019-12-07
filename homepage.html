@@ -6,67 +6,80 @@
 
     <!--fonts-->
     <link href="https://fonts.googleapis.com/css?family=Muli|Open+Sans&display=swap" rel="stylesheet">
-	
-
-    <!--libraries-->
- 
-
-
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="style/sign_up_top_bar_style.css" />
 	<link rel="stylesheet" href="style/home_page_style.css" />
-	
+	<link rel="stylesheet" href="style/top_bar_style.css" />
 
     <!-- scripts -->
     <script src="scripts/sign_up.js"></script>
+	<script src="scripts/sign_in.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 <body>
 
     <header id="top_bar">
+
         <div id="logo">
             <img src="images/logo.png" alt="logo"/>
             <span>Planner</span>
         </div>
+
+		<!-- menu ---------------------------------------------------------------------------------------->
 		<div>
 			<nav id="top_menu">
-
-				<a class="top_menu_item" id="sign_in" onmouseover="changeCursor()" onmouseout="restoreCursor()" >Sign in</a>
-				<a class="top_menu_item" id="sign_up" onmouseover="changeCursor()" onmouseout="restoreCursor()"
-				   onclick="show_sign_up('sign_up_hide')">Sign up</a>
+				<a class="top_menu_item" id="sign_in" onclick="show_sign_in('sign_in_hide')">Sign in</a>
+				<a class="top_menu_item" id="sign_up" onclick="show_sign_up('sign_up_hide')">Sign up</a>
 			</nav>
 		</div>
+
+		<!-- sign up popup ------------------------------------------------------------------------------->
 		<div id="sign_up_hide">
 			<input class="sign_up_text_box" id="sign_up_email" type="email" placeholder="i.e.name@domain.com"
 			pattern="^[a-zA-Z0-9.]{1,64}@[a-zA-Z0-0.]{1,254}$" required/>
-			<br>
+
 			<input class="sign_up_text_box" id="sign_up_pass" type="password" placeholder="Password..." >
-			<br>
+
 			<input class="sign_up_text_box" id="sign_up_conf" type="password" placeholder="Confirm Password..."/>
-			<br>
-			<button class="sign_up_buton" onclick=check_everything("sign_up_pass","sign_up_conf")>Sign Up </button>
-		
+
+			<button class="sign_up_buton"
+					onclick='validateAndRegister("sign_up_pass","sign_up_conf","sign_up_email")'>Sign Up </button>
 		</div>
+
+		<!-- sign in popup ------------------------------------------------------------------------------->
+		<div id="sign_in_hide">
+			<input class="sign_in_text_box" id="sign_in_email" type="email" placeholder="i.e.name@domain.com"
+				   pattern="^[a-zA-Z0-9.]{1,64}@[a-zA-Z0-0.]{1,254}$" required />
+
+			<input class="sign_in_text_box" id="sign_in_pass" type="password" placeholder="Password..." >
+
+			<button class="sign_in_buton" onclick='handleLogin("sign_in_email","sign_in_pass")'>Sign In </button>
+		</div>
+
     </header>
 
+	<!-- homepage content --------------------------------------------------------------------------------------------->
     <section id="home_page_section">
 	
 		<section id="home_page_box">
-		<h1 class="home_page_box_letters">Who are we?</h1>
-		<div id="logo_1">
-            <img src="images/logo.png" alt="logo"/>
-            <span>Planner</span>
-        </div>
-		<div id="play_logo">
-            <img src="images/play.png" alt="logo"/>
-        </div>
+
+			<h1 class="home_page_box_letters">Who are we?</h1>
+
+			<div id="logo_1">
+				<img src="images/logo.png" alt="logo"/>
+				<span>Planner</span>
+			</div>
+
+			<div id="play_logo">
+				<img src="images/play.png" alt="logo"/>
+			</div>
+
 		</section>
 		
 		<section id="explanation_box">
-		<h4>About planner</h4>
-		<p>Planner is an online application that lets ypu manage your tasks and events. With our app you will never forget about doing something and you can visualize all your tasks in an user friendly way, so that you can easily see which tasks should be finished first. Moreover you can share tasks with others.</p>
+			<h4>About planner</h4>
+			<p>Planner is an online application that lets ypu manage your tasks and events. With our app you will never forget about doing something and you can visualize all your tasks in an user friendly way, so that you can easily see which tasks should be finished first. Moreover you can share tasks with others.</p>
 		</section>
 		
     </section>

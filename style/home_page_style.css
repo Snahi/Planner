@@ -138,28 +138,26 @@ h4 {
 #play_logo{
 	text-align:			center;
 	height:				30%;
-	display:			auto;
 
 }
 #play_logo img{
-	display:			auto;
 	height:             100%;
     width:              auto;
 }
-/* pruebitaaaaaaaaaaas */
-#sign_up_hide{
-	
+
+
+#sign_up_hide, #sign_in_hide {
+	display:			none;
 	width:              30%;
     height:             35%;
 	background-color:	var(--top_bar_bg_color);
 	margin-right:		0px;
-	visibility:         hidden;
 	position: 			fixed;
 	top:				var(--top_bar_height);
 	right:				0px;
 }
 
-.sign_up_text_box{
+.sign_up_text_box, .sign_in_text_box {
 	background-color:	var(--table_header_bg_color);	
 	width:              90%;
 	margin-top:			5%;
@@ -171,14 +169,10 @@ h4 {
 	color:				grey;
 }
 
-.sign_up_buton{
-	float:				center;
+.sign_up_buton, .sign_in_buton {
 	margin-top:			5%;
 	margin-left:		40%;
-	padding-top:		10px;
-	padding-bottom:		10px;
-	padding-left:		20px;
-	padding-right:		20px;
+	padding: 			10px 20px;
 	background-color:	var(--logo_color);
 	color:				var(--bright_color);
 	border-style:		solid;
@@ -186,6 +180,4 @@ h4 {
 	border-radius:		5px;
 	cursor:				pointer;
 	text-align:			center;
-	
-	
 }
