@@ -149,12 +149,13 @@ h4 {
 #sign_up_hide, #sign_in_hide {
 	display:			none;
 	width:              30%;
-    height:             35%;
 	background-color:	var(--top_bar_bg_color);
-	margin-right:		0px;
+	margin-right:		0;
+    padding-bottom:     30px;
 	position: 			fixed;
 	top:				var(--top_bar_height);
-	right:				0px;
+	right:				0;
+    box-shadow:         0 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 .sign_up_text_box, .sign_in_text_box {
