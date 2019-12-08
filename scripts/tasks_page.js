@@ -22,7 +22,8 @@ function initTasksPage()
 function loadCategories()
 {
     currCategories = getAllCategories().filter(category => category.tableId == currTableId);
-    displayCategories();
+    createCalendar();
+    refreshCategories();
 }
 
 

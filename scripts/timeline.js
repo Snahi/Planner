@@ -1,6 +1,9 @@
 let calendar;
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {createCalendar()});
+
+function createCalendar()
+{
     let calendarEl = document.getElementById('calendar');
 
     calendar = new FullCalendar.Calendar(calendarEl, {
@@ -11,6 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
         eventStartEditable: true,
         eventResourceEditable: true,
         slotDuration: {day: 1},
+        resources: function(fetchInfo, successCallback, failureCallback)
+        {
+            successCallback(selectedCategories.map(function(categoryObj) {
+                return {id: categoryObj.id, title: categoryObj.name};
+            }));
+        },
         resourceLabelText: 'Categories',
         //resourceAreaWidth: "0%",
         resourcesInitiallyExpanded: false,
@@ -34,8 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     });
     calendar.render();
-
-});
+}
 
 function getDay(daysSinceToday) {
     let day = new Date();

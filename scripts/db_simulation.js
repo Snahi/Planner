@@ -367,10 +367,7 @@ function addCategoryDBOnly(tableId, name)
 
 function addCategory(tableId, name)
 {
-    let id = addCategoryDBOnly(tableId, name);
-    addResource(categories[categories.length - 1]);
-
-    return id;
+    return addCategoryDBOnly(tableId, name);
 }
 
 
@@ -426,6 +423,8 @@ function addTaskDBOnly(tableId, title, description, start, end, hashTags, catego
 
     storeTasks();
     storeLastId();
+
+    return newTask;
 }
 
 
@@ -441,9 +440,10 @@ function addTaskDBOnly(tableId, title, description, start, end, hashTags, catego
  */
 function addTask(tableId, title, description, start, end, hashTags, category)
 {
-    addTaskDBOnly(tableId, title, description, start, end, hashTags, category);
-    addEvent(id, title, start, end, category);
-    return id;
+    let newTask = addTaskDBOnly(tableId, title, description, start, end, hashTags, category);
+    addEvent(newTask.id, title, start, end, category);
+
+    return newTask.id;
 }
 
 

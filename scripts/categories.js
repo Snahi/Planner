@@ -67,6 +67,8 @@ function refreshCategories()
 {
     currCategories = getAllCategories().filter(category => category.tableId = currTableId);
     displayCategories();
+
+    calendar.refetchResources();
 }
 
 
@@ -110,6 +112,8 @@ function selectCategory(category, categoryDiv, categoryColorDiv, categorySett)
 
     selectedCategories.push(category);
     category.isSelected = true;
+
+    calendar.refetchResources();
     //showEventsByResource(category.id);
 }
 
@@ -133,6 +137,7 @@ function deselectCategory(category, categoryDiv, categoryColorDiv, categorySett)
     selectedCategories  = selectedCategories.filter(selectedCategory => selectedCategory.id !== category.id);
     category.isSelected = false;
 
+    calendar.refetchResources();
     //hideEventsByResource(category.id);
 }
 
