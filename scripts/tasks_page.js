@@ -4,14 +4,15 @@
 const TASK_CREATION_POPUP_ID = "task_creation_popup";
 
 // state
-let currTableId         = 1;
+let currTableId         = -1;
 let selectedCategories  = [];
 
 
 
 function initTasksPage()
 {
-    /* to be removed when we connect with tables page */ initDB();
+    currTableId = getCookie(CURR_TABLE_ID);
+    loadDBFromCookies();
     loadCategories();
     updateSearchInputDataSource();
 }
@@ -20,7 +21,7 @@ function initTasksPage()
 
 function loadCategories()
 {
-    currCategories = getAllCategories().filter(category => category.tableId = currTableId);
+    currCategories = getAllCategories().filter(category => category.tableId == currTableId);
     displayCategories();
 }
 

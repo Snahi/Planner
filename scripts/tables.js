@@ -1,12 +1,13 @@
 // CONST
 const TABLE_DIV_CLASS   = "table_div";
 const TABLES_SECTION_ID = "tables";
+const CURR_TABLE_ID     = "currTable";
 
 
 
 function initialLoadTables()
 {
-    initTables();
+    loadDBFromCookies();
     loadTables();
 }
 
@@ -64,6 +65,12 @@ function createTableDiv(tabId, tabName)
     let tabDiv          = document.createElement("DIV");
     tabDiv.className    = TABLE_DIV_CLASS;
     tabDiv.innerText    = tabName;
+
+    tabDiv.onclick = function()
+    {
+        setCookie(CURR_TABLE_ID, tabId, 1000);
+        window.location.href = "tasks_page.html";
+    };
 
     return tabDiv;
 }

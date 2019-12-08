@@ -60,11 +60,14 @@ function addEvent(id, title, start, end, resourceId) {
 }
 
 function addResource(category) {
-    calendar.addResource({
-        id: category.id,
-        title: category.name,
-        eventBackgroundColor: category.color
-    })
+    if (calendar !== null)
+    {
+        calendar.addResource({
+            id: category.id,
+            title: category.name,
+            eventBackgroundColor: category.color
+        })
+    }
 }
 
 function hideEventsByResource(resourceId) {

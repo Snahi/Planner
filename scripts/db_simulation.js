@@ -9,7 +9,7 @@ let tables = new Map();
 array that contains categories, where category is an object containing
 fields:
     id          : number,
-    currTableId : number
+    tableId     : number
     name        : String
     color       : String
     isSelected  : bool
@@ -19,7 +19,7 @@ let categories = [];
 array that contains tasks, where task is an object containing
 fields:
     id              : number,
-    currTableId     : number,
+    tableId         : number,
     title           : String,
     description     : String,
     start           : Date,
@@ -41,30 +41,222 @@ let lastId = -1;
 
 
 
-function initDB()
-{
-    let birthdayPartyId = addTable("Birthday Party")[0];
-    addTable("Work");
-
-    let balloonsId = addCategory(birthdayPartyId, "Balloons");
-    addCategory(birthdayPartyId, "Music");
-    addTask(birthdayPartyId, "choose colors", "choose colors of balloons", new Date(), new Date(),
-        ["color", "balloons"], balloonsId);
-    addTask(birthdayPartyId, "choose shop", "choose in which shop to buy balloons", new Date(), new Date(),
-        ["buy", "balloons"], balloonsId);
-    addTask(birthdayPartyId, "order a cake", "1. find a good bakery, 2. decide whether price is good, 3. choose a cake, 4. order invoice, 5. pay",
-        new Date(), new Date(), [], balloonsId);
-    calendar.render();
-
-    console.log(tables.size);
-}
+// function initDB()
+// {
+//     let birthdayPartyId = addTable("Birthday Party")[0];
+//     addTable("Work");
+//
+//     let balloonsId = addCategoryDBOnly(birthdayPartyId, "Balloons");
+//     addCategoryDBOnly(birthdayPartyId, "Music");
+//     addTaskDBOnly(birthdayPartyId, "choose colors", "choose colors of balloons", new Date(), new Date(),
+//         ["color", "balloons"], balloonsId);
+//     addTaskDBOnly(birthdayPartyId, "choose shop", "choose in which shop to buy balloons", new Date(), new Date(),
+//         ["buy", "balloons"], balloonsId);
+//     addTaskDBOnly(birthdayPartyId, "order a cake", "1. find a good bakery, 2. decide whether price is good, 3. choose a cake, 4. order invoice, 5. pay",
+//         new Date(), new Date(), [], balloonsId);
+// }
 
 
 
 function initTables()
 {
-    addTable("Birthday Party")[0];
+    addTable("Birthday Party");
     addTable("Work");
+}
+
+
+
+function initCategories()
+{
+    let firstTableId = Array.from(tables.keys())[0];
+
+    addCategoryDBOnly(firstTableId, "Balloons");
+    addCategoryDBOnly(firstTableId, "Music");
+}
+
+
+
+function initTasks()
+{
+    let firstTableId = getAllTables().keys()[0];
+    let firstCatId = -1;
+
+    for (let category of categories)
+    {
+        if (category.tableId === firstTableId)
+        {
+            firstCatId = category.tableId;
+            break;
+        }
+    }
+
+    addTaskDBOnly(firstTableId, "choose colors", "choose colors of balloons", new Date(), new Date(),
+        ["color", "balloons"], firstCatId);
+    addTaskDBOnly(firstTableId, "choose shop", "choose in which shop to buy balloons", new Date(), new Date(),
+        ["buy", "balloons"], firstCatId);
+    addTaskDBOnly(firstTableId, "order a cake", "1. find a good bakery, 2. decide whether price is good, 3. choose a cake, 4. order invoice, 5. pay",
+        new Date(), new Date(), [], firstCatId);
+}
+
+
+// cookies /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const TABLES_ID         = "tables";
+const CATEGORIES_ID     = "categories";
+const TASKS_ID          = "tasks";
+const LAST_ID_ID        = "last_id";
+
+
+function storeDBInCookies()
+{
+    storeTables();
+    storeCategories();
+    storeTasks();
+    storeLastId();
+}
+
+
+
+function loadDBFromCookies()
+{
+    loadTablesFromCookies();
+    loadCategoriesFromCookies();
+    loadTasksFromCookies();
+    loadLastIdFromCookies();
+}
+
+
+
+function storeTables()
+{
+    setCookie(TABLES_ID, JSON.stringify(Array.from(tables.entries())), 1000);
+}
+
+
+
+function loadTablesFromCookies()
+{
+    let tablesCookie = getCookie(TABLES_ID);
+
+    if (tablesCookie !== "")
+    {
+        tables = new Map(JSON.parse(tablesCookie));
+    }
+    else
+    {
+        tables = new Map();
+        initTables();
+    }
+}
+
+
+
+function storeCategories()
+{
+    setCookie(CATEGORIES_ID, JSON.stringify(categories), 1000);
+}
+
+
+
+function loadCategoriesFromCookies()
+{
+    let categoriesCookie = getCookie(CATEGORIES_ID);
+
+    if (categoriesCookie !== "")
+    {
+        categories = JSON.parse(categoriesCookie);
+    }
+    else
+    {
+        categories = [];
+        initCategories();
+    }
+}
+
+
+
+function storeTasks()
+{
+    setCookie(TASKS_ID, JSON.stringify(tasks), 1000);
+}
+
+
+
+function loadTasksFromCookies()
+{
+    let tasksCookie = getCookie(TASKS_ID);
+
+    if (tasksCookie !== "")
+    {
+        tasks = JSON.parse(tasksCookie);
+
+        tasks.forEach(function(task)
+        {
+            task.start  = new Date(Date.parse(task.start));
+            task.end    = new Date(Date.parse(task.end));
+        })
+    }
+    else
+    {
+        tasks = [];
+        initTasks();
+    }
+}
+
+
+
+function storeLastId()
+{
+    setCookie(LAST_ID_ID, JSON.stringify(lastId), 1000);
+}
+
+
+function loadLastIdFromCookies()
+{
+    let lastIdCookie = getCookie(LAST_ID_ID);
+
+    if (lastIdCookie !== null)
+    {
+        lastId = lastIdCookie;
+    }
+    else
+    {
+        lastId = -1;
+    }
+}
+
+
+
+function getCookie(cookieName)
+{
+    let name            = cookieName + "=";
+    let decodedCookie   = decodeURIComponent(document.cookie);
+    let ca              = decodedCookie.split(';');
+    let c;
+
+    for(let i = 0; i <ca.length; i++)
+    {
+        c = ca[i];
+        while (c.charAt(0) === ' ')
+        {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0)
+        {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+
+
+function setCookie(name, value, daysTillExpire)
+{
+    let d = new Date();
+    d.setTime(d.getTime() + (daysTillExpire * 24 * 60 * 60 * 1000));    // transform days to milliseconds
+    let expires = "expires="+ d.toUTCString();
+
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
 
 
@@ -86,6 +278,8 @@ function addTable(name)
     {
         let id = generateUniqueId();
         tables.set(id, name);
+        storeTables();
+        storeLastId();
     }
 
     return [id, isNameUnq];
@@ -115,11 +309,28 @@ function deleteTable(name)
         if (idName[1] === name)
         {
             tables.delete(idName[0]);
+            storeTables();
+            storeLastId();
             return true;
         }
     }
 
     return false;
+}
+
+
+
+function getTableId(tabName)
+{
+    for (let idName of tables.entries())
+    {
+        if (idName[1] === tabName)
+        {
+            return idName[0];
+        }
+    }
+
+    return -1;
 }
 
 
@@ -135,7 +346,7 @@ function getAllTables()
 
 
 
-function addCategory(tableId, name)
+function addCategoryDBOnly(tableId, name)
 {
     let id = generateUniqueId();
 
@@ -148,7 +359,17 @@ function addCategory(tableId, name)
     };
 
     categories.push(newCategory);
-    addResource(newCategory);
+    storeCategories();
+    storeLastId();
+}
+
+
+
+function addCategory(tableId, name)
+{
+    let id = addCategoryDBOnly(tableId, name);
+    addResource(categories[categories.length - 1]);
+
     return id;
 }
 
@@ -157,8 +378,9 @@ function addCategory(tableId, name)
 function deleteCategory(categoryId)
 {
     categories = categories.filter(category => category.id !== categoryId);
-    console.log(calendar.getResourceById(categoryId));
-    calendar.getResourceById(categoryId).remove();
+
+    storeCategories();
+    storeLastId();
 }
 
 
@@ -184,17 +406,8 @@ function isCategoryNameUniqueInTable(tableId, categoryName)
 // tasks /////////////////////////////////////////////////////////////////////////////////////
 
 
-/**
- *
- * @param tableId: number
- * @param title: string
- * @param description: string
- * @param start: date
- * @param end: date
- * @param hashTags: array<string>
- * @param category: number
- */
-function addTask(tableId, title, description, start, end, hashTags, category)
+
+function addTaskDBOnly(tableId, title, description, start, end, hashTags, category)
 {
     let id = generateUniqueId();
 
@@ -210,6 +423,25 @@ function addTask(tableId, title, description, start, end, hashTags, category)
     };
 
     tasks.push(newTask);
+
+    storeTasks();
+    storeLastId();
+}
+
+
+/**
+ *
+ * @param tableId: number
+ * @param title: string
+ * @param description: string
+ * @param start: date
+ * @param end: date
+ * @param hashTags: array<string>
+ * @param category: number
+ */
+function addTask(tableId, title, description, start, end, hashTags, category)
+{
+    addTaskDBOnly(tableId, title, description, start, end, hashTags, category);
     addEvent(id, title, start, end, category);
     return id;
 }
@@ -219,6 +451,9 @@ function addTask(tableId, title, description, start, end, hashTags, category)
 function deleteTask(taskId)
 {
     tasks = tasks.filter(task => task.id !== taskId);
+
+    storeTasks();
+    storeLastId();
 }
 
 
@@ -245,7 +480,10 @@ function updateTask(task, title, description, start, end, hashTags, category)
     task.start          = start;
     task.end            = end;
     task.hashTags       = hashTags;
-    task.category        = category;
+    task.category       = category;
+
+    storeTasks();
+    storeLastId();
 }
 
 
