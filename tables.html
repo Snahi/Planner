@@ -8,41 +8,18 @@
     <!--fonts-->
     <link href="https://fonts.googleapis.com/css?family=Muli|Open+Sans&display=swap" rel="stylesheet">
 
-    <!--libraries-->
-    <link href='fullcalendar-scheduler-4.3.1/packages/core/main.css' rel='stylesheet' />
-    <link href="fullcalendar-scheduler-4.3.1/packages-premium/timeline/main.css" rel="stylesheet">
-    <link href="fullcalendar-scheduler-4.3.1/packages-premium/resource-timeline/main.css" rel="stylesheet">
-
-    <script src='fullcalendar-scheduler-4.3.1/packages/core/main.js'></script>
-    <script src="fullcalendar-scheduler-4.3.1/packages-premium/timeline/main.js"></script>
-    <script src="fullcalendar-scheduler-4.3.1/packages-premium/resource-common/main.js"></script>
-    <script src="fullcalendar-scheduler-4.3.1/packages-premium/resource-timeline/main.js"></script>
-    <script src="fullcalendar-scheduler-4.3.1/packages/interaction/main.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
-
     <!-- stylesheets -->
     <link rel="stylesheet" href="style/tables_style.css"/>
     <link rel="stylesheet" href="style/top_bar_style.css" />
-    <link rel="stylesheet" href="style/timeline.css" />
 
     <!-- scripts -->
-    <script src="scripts/db_simulation.js"></script>
     <script src="scripts/tables.js"></script>
-    <script src="scripts/categories.js"></script>
-    <script src="scripts/string_utils.js"></script>
-    <script src="scripts/timeline.js"></script>
-    <script src="scripts/task_creation.js"></script>
-    <script src="scripts/task_details.js"></script>
-    <script src="scripts/advanced_search.js"></script>
+    <script src="scripts/db_simulation.js"></script>
 
 </head>
-<body onload="initial_show_table_elements()">
+
+<body onload="loadTables()">
+
     <header id="top_bar">
         <div id="logo">
             <img src="images/logo.png" alt="logo"/>
@@ -59,32 +36,23 @@
         </nav>
     </header>
 
-    <section id="table_header">
+    <section id="header">
+        <h1>Tables</h1>
 
-      <br></br>
+        <div id="new_table_line">
+            <input id="new_table_name_input" type="text" placeholder="New Table name..."/>
 
-      <div id ="tables_above"> Tables</div>
-
-      <input id="table_input" onfocus="this.value=''" type="text" placeholder="New Table name..."/>
-
-      <div id="but_advanced_search" onclick=create_new_table("table_input");>
-            Create Table
-      </div>
-
-      <div id="but_advanced_search" onclick=remove_tables();>
-            Remove All Tables
-      </div>
+            <div id="but_create_new_table" onclick='createNewTable("new_table_name_input")'>
+                Create Table
+            </div>
+        </div>
 
     </section>
 
     <!-- container ---------------------------------------------------------------------------------------------------->
-  <section id="table_search" >
+    <section id="tables">
 
-    <container class="flex-container">
-
-    </container>
-
-  </section>
+    </section>
 
 </body>
 </html>

@@ -1,3 +1,24 @@
+* {
+    box-sizing:         border-box;
+
+    /* dimensions ////////////////////////////////////////////////////////// */
+    /* top bar */
+    --top_bar_height:           40px;
+    --top_menu_item_padding:    10px;
+
+    /* colors ////////////////////////////////////////////////////////////// */
+    /* general */
+    --bright_color:                     #14FFEC;
+    --blue:                             #0D7377;
+    /* top bar */
+    --logo_color:                       var(--blue);
+    --top_bar_bg_color:                 #212121;
+    --top_menu_item_color:              #0D7377;
+    --top_menu_item_hov_bg_color:       var(--table_header_bg_color);
+    --top_menu_item_hov_color:          var(--bright_color);
+}
+
+
 #top_bar {
     width:              100%;
     height:             var(--top_bar_height);

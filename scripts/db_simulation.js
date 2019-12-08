@@ -43,7 +43,7 @@ let lastId = -1;
 
 function initDB()
 {
-    let birthdayPartyId = addTable("Birthday Party");
+    let birthdayPartyId = addTable("Birthday Party")[0];
     addTable("Work");
 
     let balloonsId = addCategory(birthdayPartyId, "Balloons");
@@ -69,10 +69,31 @@ function initDB()
 
 function addTable(name)
 {
-    let id = generateUniqueId();
-    tables.set(id, name);
+    let id          = -1;
+    let isNameUnq   = isTableNameUnique(name);
 
-    return id;
+    if (isNameUnq)
+    {
+        let id = generateUniqueId();
+        tables.set(id, name);
+    }
+
+    return [id, isNameUnq];
+}
+
+
+
+function isTableNameUnique(name)
+{
+    for (let tabName of tables.values())
+    {
+        if (tabName === name)
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 
