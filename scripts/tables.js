@@ -4,12 +4,32 @@ const TABLES_SECTION_ID = "tables";
 
 
 
+function initialLoadTables()
+{
+    initTables();
+    loadTables();
+}
+
+
+
 function loadTables()
 {
     let tablesSection       = document.getElementById(TABLES_SECTION_ID);
     tablesSection.innerHTML = "";
 
     tables.forEach((tabName, tabId) => tablesSection.appendChild(createTableDiv(tabId, tabName)));
+
+    $(".table_div").draggable({
+        containment:    "body",
+        revert:         true
+    });
+    $( "#tables_bin" ).droppable({
+        drop: function( event, ui )
+        {
+            deleteTable(ui.draggable.context.innerText);
+            loadTables();
+        }
+    });
 }
 
 

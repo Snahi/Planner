@@ -55,6 +55,16 @@ function initDB()
     addTask(birthdayPartyId, "order a cake", "1. find a good bakery, 2. decide whether price is good, 3. choose a cake, 4. order invoice, 5. pay",
         new Date(), new Date(), [], balloonsId);
     calendar.render();
+
+    console.log(tables.size);
+}
+
+
+
+function initTables()
+{
+    addTable("Birthday Party")[0];
+    addTable("Work");
 }
 
 

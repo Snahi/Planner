@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="style/tables_style.css"/>
     <link rel="stylesheet" href="style/top_bar_style.css" />
 
+    <!-- libraries -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <!-- scripts -->
     <script src="scripts/tables.js"></script>
     <script src="scripts/db_simulation.js"></script>
@@ -19,7 +23,7 @@
 
 </head>
 
-<body onload="loadTables()">
+<body onload="initialLoadTables()">
 
     <header id="top_bar">
         <div id="logo">
@@ -40,11 +44,18 @@
     <section id="header">
         <h1>Tables</h1>
 
-        <div id="new_table_line">
-            <input id="new_table_name_input" type="text" placeholder="New Table name..."/>
+        <div id="tools_line">
+            <div id="new_table_line">
+                <input id="new_table_name_input" type="text" placeholder="New Table name..."/>
 
-            <div id="but_create_new_table" onclick='createNewTable("new_table_name_input")'>
-                Create Table
+                <div id="but_create_new_table" onclick='createNewTable("new_table_name_input")'>
+                    Create Table
+                </div>
+            </div>
+
+            <!-- drag table here to remove it -->
+            <div id="tables_bin">
+                <span>Drag table here to remove it</span>
             </div>
         </div>
 
