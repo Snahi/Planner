@@ -79,17 +79,17 @@ function initCategories()
 function initTasks()
 {
     let firstTableId = getAllTables().keys()[0];
-    let firstCatId = -1;
+    let firstCatId = getAllCategories()[0].id;
 
-    for (let category of categories)
-    {
-        if (category.tableId === firstTableId)
-        {
-            firstCatId = category.tableId;
-            break;
-        }
-    }
-
+    // for (let category of categories)
+    // {
+    //     if (category.tableId === firstTableId)
+    //     {
+    //         firstCatId = category.id;
+    //         break;
+    //     }
+    // }
+    // window.alert(firstCatId);
     addTaskDBOnly(firstTableId, "choose colors", "choose colors of balloons", new Date(), new Date(),
         ["color", "balloons"], firstCatId);
     addTaskDBOnly(firstTableId, "choose shop", "choose in which shop to buy balloons", new Date(), new Date(),
@@ -389,6 +389,19 @@ function getAllCategories()
 
 
 
+function getCategoryById(categoryId)
+{
+    for (let category of categories)
+    {
+        if (category.id == categoryId)
+        {
+            return category;
+        }
+    }
+}
+
+
+
 function isCategoryNameUniqueInTable(tableId, categoryName)
 {
     let categoriesWithTheSameName = categories.filter(category =>
@@ -441,7 +454,7 @@ function addTaskDBOnly(tableId, title, description, start, end, hashTags, catego
 function addTask(tableId, title, description, start, end, hashTags, category)
 {
     let newTask = addTaskDBOnly(tableId, title, description, start, end, hashTags, category);
-    addEvent(newTask.id, title, start, end, category);
+    refreshEvents();
 
     return newTask.id;
 }
@@ -452,6 +465,7 @@ function deleteTask(taskId)
 {
     tasks = tasks.filter(task => task.id !== taskId);
 
+    refreshEvents();
     storeTasks();
     storeLastId();
 }
@@ -482,6 +496,7 @@ function updateTask(task, title, description, start, end, hashTags, category)
     task.hashTags       = hashTags;
     task.category       = category;
 
+    refreshEvents();
     storeTasks();
     storeLastId();
 }
@@ -502,12 +517,12 @@ function generateUniqueId()
 
 function getRandomColor()
 {
-    let letters = "0123456789ABCDEF";
+    let letters = "0123456789ABCD";
     let color   = "#";
 
     for (let i = 0; i < 6; i++)
     {
-        color += letters[Math.floor(Math.random() * 16)];
+        color += letters[Math.floor(Math.random() * (letters.length - 1))];
     }
 
     return color;

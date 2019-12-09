@@ -13,6 +13,7 @@ function initTasksPage()
 {
     currTableId = getCookie(CURR_TABLE_ID);
     loadDBFromCookies();
+    createCalendar();
     loadCategories();
     updateSearchInputDataSource();
 }
@@ -22,7 +23,7 @@ function initTasksPage()
 function loadCategories()
 {
     currCategories = getAllCategories().filter(category => category.tableId == currTableId);
-    createCalendar();
+    currCategories.forEach(category => category.isSelected = false);
     refreshCategories();
 }
 

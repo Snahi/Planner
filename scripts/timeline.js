@@ -12,11 +12,27 @@ function createCalendar()
         defaultView: 'resourceTimelineWeek',
         editable: true,
         eventStartEditable: true,
+        events: function(info, successCallback, failureCallback) {
+            successCallback(getAllTasks().filter(task => task.tableId == currTableId).map(function(task)
+            {
+                let bg = getCategoryById(task.category).color;
+
+                return {
+                    id: task.id,
+                    title: task.title,
+                    start: task.start,
+                    end: task.end,
+                    resourceId: task.category,
+                    backgroundColor: bg,
+                    fullDay: true
+                };
+            }))
+        },
         eventResourceEditable: true,
         slotDuration: {day: 1},
         resources: function(fetchInfo, successCallback, failureCallback)
         {
-            successCallback(selectedCategories.map(function(categoryObj) {
+            successCallback(selectedCategories.filter(selCat => selCat.tableId == currTableId).map(function(categoryObj) {
                 return {id: categoryObj.id, title: categoryObj.name};
             }));
         },
@@ -45,38 +61,43 @@ function createCalendar()
     calendar.render();
 }
 
-function getDay(daysSinceToday) {
-    let day = new Date();
-    day.setDate(day.getDate() + daysSinceToday);
-    const dd = String(day.getDay() + 1).padStart(2, '0');
-    const mm = String(day.getMonth() + 1).padStart(2, '0'); //January is 0!
-    const yyyy = day.getFullYear();
-
-    day = yyyy + '-' + mm + '-' + dd;
-    return day
+function refreshEvents()
+{
+    calendar.getEventSources()[0].refetch();
 }
 
-function addEvent(id, title, start, end, resourceId) {
-    calendar.addEvent({
-        id: id,
-        title: title,
-        start: start,
-        end: end,
-        resourceId: resourceId,
-        fullDay: true
-    })
-}
+// function getDay(daysSinceToday) {
+//     let day = new Date();
+//     day.setDate(day.getDate() + daysSinceToday);
+//     const dd = String(day.getDay() + 1).padStart(2, '0');
+//     const mm = String(day.getMonth() + 1).padStart(2, '0'); //January is 0!
+//     const yyyy = day.getFullYear();
+//
+//     day = yyyy + '-' + mm + '-' + dd;
+//     return day
+// }
 
-function addResource(category) {
-    if (calendar !== null)
-    {
-        calendar.addResource({
-            id: category.id,
-            title: category.name,
-            eventBackgroundColor: category.color
-        })
-    }
-}
+// function addEvent(id, title, start, end, resourceId) {
+//     calendar.addEvent({
+//         id: id,
+//         title: title,
+//         start: start,
+//         end: end,
+//         resourceId: resourceId,
+//         fullDay: true
+//     })
+// }
+
+// function addResource(category) {
+//     if (calendar !== null)
+//     {
+//         calendar.addResource({
+//             id: category.id,
+//             title: category.name,
+//             eventBackgroundColor: category.color
+//         })
+//     }
+// }
 
 function hideEventsByResource(resourceId) {
     console.log(resourceId);
