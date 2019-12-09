@@ -93,9 +93,9 @@ h4 {
 /* slide show //////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /* Slideshow container */
 .slideshow-container {
-    width:              100%;
+    width:              96%;
     position:           relative;
-    margin:             0;
+    margin:             auto;
     padding:            5px 50px;
     background-color:   var(--top_bar_bg_color);
 }
