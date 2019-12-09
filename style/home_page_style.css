@@ -253,6 +253,7 @@ h4 {
 	top:				var(--top_bar_height);
 	right:				0;
     box-shadow:         0 5px 5px rgba(0, 0, 0, 0.3);
+    z-index:            1000;
 }
 
 .sign_up_text_box, .sign_in_text_box {
