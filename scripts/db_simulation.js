@@ -41,23 +41,6 @@ let lastId = -1;
 
 
 
-// function initDB()
-// {
-//     let birthdayPartyId = addTable("Birthday Party")[0];
-//     addTable("Work");
-//
-//     let balloonsId = addCategoryDBOnly(birthdayPartyId, "Balloons");
-//     addCategoryDBOnly(birthdayPartyId, "Music");
-//     addTaskDBOnly(birthdayPartyId, "choose colors", "choose colors of balloons", new Date(), new Date(),
-//         ["color", "balloons"], balloonsId);
-//     addTaskDBOnly(birthdayPartyId, "choose shop", "choose in which shop to buy balloons", new Date(), new Date(),
-//         ["buy", "balloons"], balloonsId);
-//     addTaskDBOnly(birthdayPartyId, "order a cake", "1. find a good bakery, 2. decide whether price is good, 3. choose a cake, 4. order invoice, 5. pay",
-//         new Date(), new Date(), [], balloonsId);
-// }
-
-
-
 function initTables()
 {
     addTable("Birthday Party");

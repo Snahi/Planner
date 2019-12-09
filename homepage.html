@@ -15,9 +15,10 @@
     <script src="scripts/sign_up.js"></script>
 	<script src="scripts/sign_in.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="scripts/slideshow.js"></script>
 
 </head>
-<body>
+<body onload="showSlides(1);">
 
     <header id="top_bar">
 
@@ -61,22 +62,37 @@
 
 	<!-- homepage content --------------------------------------------------------------------------------------------->
     <section id="home_page_section">
-	
-		<section id="home_page_box">
 
-			<h1 class="home_page_box_letters">Who are we?</h1>
+		<!-- slide show ------------------------------------------------------------------------------->
+		<!-- Slideshow container -->
+		<div class="slideshow-container">
 
-			<div id="logo_1">
-				<img src="images/logo.png" alt="logo"/>
-				<span>Planner</span>
+			<!-- Full-width images with number and caption text -->
+			<div class="mySlides fade">
+				<div class="numbertext">1 / 2</div>
+				<img src="images/img2.jpg" style="width:100%" alt="tasks page screen">
+				<div class="text" style="color:var(--top_bar_bg_color)">Create multiple projects, for your private life and work</div>
 			</div>
 
-			<div id="play_logo">
-				<img src="images/play.png" alt="logo"/>
+			<div class="mySlides fade">
+				<div class="numbertext">2 / 2</div>
+				<img src="images/img1.jpg" style="width:100%" alt="tables page screen">
+				<div class="text">Enjoy the convenient and clear way of displaying tasks</div>
 			</div>
 
-		</section>
-		
+			<!-- Next and previous buttons -->
+			<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+			<a class="next" onclick="plusSlides(1)">&#10095;</a>
+		</div>
+		<br>
+
+		<!-- The dots/circles -->
+		<div style="text-align:center">
+			<span class="dot" onclick="currentSlide(1)"></span>
+			<span class="dot" onclick="currentSlide(2)"></span>
+		</div>
+
+		<!-- introduction text ---------------------------------------------------------------------------->
 		<section id="explanation_box">
 			<h4>About planner</h4>
 			<p>Planner is an online application that lets ypu manage your tasks and events. With our app you will never forget about doing something and you can visualize all your tasks in an user friendly way, so that you can easily see which tasks should be finished first. Moreover you can share tasks with others.</p>

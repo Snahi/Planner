@@ -31,7 +31,7 @@ function showTaskDetails(task)
 
     let startTimeStr = hoursStart + ":" + minutesStart;
     let endTimeStr   = hoursEnd + ":" + minutesEnd;
-    console.log(startTimeStr);
+
     title.value     = task.title;
     desc.value      = task.description;
     startDat.value  = task.start.toISOString().slice(0, 10);
