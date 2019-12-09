@@ -304,6 +304,14 @@ function deleteTable(name)
         if (idName[1] === name)
         {
             tables.delete(idName[0]);
+
+            for (let category of categories)
+            {
+                if (category.tableId == idName[0])
+                {
+                    deleteCategory(category.id);
+                }
+            }
             storeTables();
             storeLastId();
             return true;
@@ -369,9 +377,11 @@ function addCategory(tableId, name)
 
 function deleteCategory(categoryId)
 {
-    categories = categories.filter(category => category.id !== categoryId);
+    categories = categories.filter(category => category.id != categoryId);
+    tasks       = tasks.filter(task => task.category != categoryId);
 
     storeCategories();
+    storeTasks();
     storeLastId();
 }
 
