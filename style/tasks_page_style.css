@@ -472,7 +472,7 @@ h4 {
 }
 
 
-#but_create_new_task, #but_save_task_changes, #but_search {
+#but_create_new_task, #but_save_task_changes, #but_search, #but_delete_task {
     width:              var(--but_new_task_width);
     height:             var(--but_create_new_task_height);
     background-color:   var(--but_new_task_bg);
@@ -486,9 +486,20 @@ h4 {
 }
 
 
+#but_delete_task {
+    background-color:   #fa4d02;
+    color:              white;
+}
+
+
 #but_create_new_task:hover, #but_save_task_changes:hover, #but_search:hover {
     background-color:   var(--but_new_task_bg_hov);
     color:              var(--but_new_task_bg);
+}
+
+
+#but_delete_task:hover {
+    background-color:   #e80e0e;
 }
 
 

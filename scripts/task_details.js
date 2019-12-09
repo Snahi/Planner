@@ -9,6 +9,7 @@ const TASK_CATEGORY_ID          = "task_category";
 const TASK_HASH_TAGS_ID         = "task_hash_tags";
 const TASK_DETAILS_POPUP_ID     = "task_details_popup";
 const BUT_SAVE_ID               = "but_save_task_changes";
+const BUT_DELETE_ID             = "but_delete_task";
 
 
 
@@ -44,6 +45,7 @@ function showTaskDetails(task)
     document.getElementById(TASK_DETAILS_POPUP_ID).style.display = "block";
 
     setSaveButtonListener(task);
+    setDeleteButtonListener(task);
 }
 
 
@@ -65,6 +67,19 @@ function setSaveButtonListener(task){
         {
             hideDetailsPopup();
         }
+    }
+}
+
+
+
+function setDeleteButtonListener(task)
+{
+    let butDel = document.getElementById(BUT_DELETE_ID);
+
+    butDel.onclick = function()
+    {
+        deleteTask(task.id);
+        hideDetailsPopup();
     }
 }
 
