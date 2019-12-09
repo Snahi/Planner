@@ -23,13 +23,20 @@ function showTaskDetails(task)
     let category    = document.getElementById(TASK_CATEGORY_ID);
     let hashTags    = document.getElementById(TASK_HASH_TAGS_ID);
 
-    console.log(task);
+    let hoursStart      = task.start.getHours() < 10 ? "0" + task.start.getHours() : task.start.getHours();
+    let minutesStart    = task.start.getMinutes() < 10 ? "0" + task.start.getMinutes() : task.start.getMinutes();
+    let hoursEnd      = task.end.getHours() < 10 ? "0" + task.end.getHours() : task.end.getHours();
+    let minutesEnd    = task.end.getMinutes() < 10 ? "0" + task.end.getMinutes() : task.end.getMinutes();
+
+    let startTimeStr = hoursStart + ":" + minutesStart;
+    let endTimeStr   = hoursEnd + ":" + minutesEnd;
+    console.log(startTimeStr);
     title.value     = task.title;
     desc.value      = task.description;
     startDat.value  = task.start.toISOString().slice(0, 10);
-    startTim.value  = task.start.getHours() + ":" + task.start.getMinutes();
+    startTim.value  = startTimeStr;
     endDat.value    = task.end.toISOString().slice(0, 10);
-    endTim.value    = task.end.getHours() + ":" + task.end.getMinutes();
+    endTim.value    = endTimeStr;
     populateCategorySelect(category);
     category.value  = task.category;
     hashTags.value  = task.hashTags.reduce(((acc, hash) => acc + "#" + hash), "");
@@ -94,14 +101,7 @@ function editTask(task)
     {
         updateTask(task, title, desc, startDate, endDate, hashTagsArr, category);
         updateSearchInputDataSource();
-        calendar.getEventById(task.id).remove();
-        calendar.addEvent({
-            id: task.id,
-            title: task.title,
-            start: task.start,
-            end: task.end,
-            resourceId: task.category
-        });
+
         return true;
     }
 }

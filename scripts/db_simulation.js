@@ -78,24 +78,19 @@ function initCategories()
 
 function initTasks()
 {
-    let firstTableId = getAllTables().keys()[0];
-    let firstCatId = getAllCategories()[0].id;
+    let firstTableId    = getAllTables().keys()[0];
+    let firstCatId      = getAllCategories()[0].id;
 
-    // for (let category of categories)
-    // {
-    //     if (category.tableId === firstTableId)
-    //     {
-    //         firstCatId = category.id;
-    //         break;
-    //     }
-    // }
-    // window.alert(firstCatId);
-    addTaskDBOnly(firstTableId, "choose colors", "choose colors of balloons", new Date(), new Date(),
+    let startDate1 = new Date();
+    let startDate2 = new Date();
+    startDate2.setDate(startDate1.getDate() + 2);
+
+    addTaskDBOnly(firstTableId, "choose colors", "choose colors of balloons", startDate1, startDate2,
         ["color", "balloons"], firstCatId);
-    addTaskDBOnly(firstTableId, "choose shop", "choose in which shop to buy balloons", new Date(), new Date(),
+    addTaskDBOnly(firstTableId, "choose shop", "choose in which shop to buy balloons", startDate1, startDate2,
         ["buy", "balloons"], firstCatId);
     addTaskDBOnly(firstTableId, "order a cake", "1. find a good bakery, 2. decide whether price is good, 3. choose a cake, 4. order invoice, 5. pay",
-        new Date(), new Date(), [], firstCatId);
+        startDate1, startDate2, [], firstCatId);
 }
 
 
@@ -216,7 +211,7 @@ function loadLastIdFromCookies()
 
     if (lastIdCookie !== null)
     {
-        lastId = lastIdCookie;
+        lastId = parseInt(lastIdCookie, 10);
     }
     else
     {

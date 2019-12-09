@@ -1,6 +1,6 @@
 let calendar;
-
-document.addEventListener('DOMContentLoaded', function() {createCalendar()});
+//
+// document.addEventListener('DOMContentLoaded', function() {createCalendar()});
 
 function createCalendar()
 {
@@ -24,7 +24,8 @@ function createCalendar()
                     end: task.end,
                     resourceId: task.category,
                     backgroundColor: bg,
-                    fullDay: true
+                    fullDay: true,
+                    category: task.category
                 };
             }))
         },
@@ -51,9 +52,8 @@ function createCalendar()
         eventDrop: function(info) {
             let event = info.event;
             let task = getTaskById(event.id);
-            let oldDate = new Date(task.end);
-            let newDate = new Date(oldDate.setDate(oldDate.getDate() + info.delta.days));
-            updateTask(task, event.title, task.description, event.start, oldDate, task.hashTags, info.newResource._resource.id);
+
+            updateTask(task, event.title, task.description, event.start, event.end, task.hashTags, event._def.resourceIds[0]);
             updateSearchInputDataSource();
         }
 
@@ -99,21 +99,21 @@ function refreshEvents()
 //     }
 // }
 
-function hideEventsByResource(resourceId) {
-    console.log(resourceId);
-    let eventsToHide = calendar.getResourceById(resourceId).getEvents();
-    eventsToHide.forEach(event => {
-        event.eventColor = 'rgba(0,0,0,0)';
-        event.eventTextColor = 'rgba(0,0,0,0)';
-    });
-}
-
-function showEventsByResource(resourceId) {
-    console.log(resourceId);
-    let resource = calendar.getResourceById(resourceId);
-    resource.getEvents().forEach(event => {
-        event.eventBackgroundColor = resource.eventBackgroundColor;
-        event.eventBorderColor = resource.eventBorderColor;
-        event.eventTextVolor = resource.eventTextColor;
-    });
-}
+// function hideEventsByResource(resourceId) {
+//     console.log(resourceId);
+//     let eventsToHide = calendar.getResourceById(resourceId).getEvents();
+//     eventsToHide.forEach(event => {
+//         event.eventColor = 'rgba(0,0,0,0)';
+//         event.eventTextColor = 'rgba(0,0,0,0)';
+//     });
+// }
+//
+// function showEventsByResource(resourceId) {
+//     console.log(resourceId);
+//     let resource = calendar.getResourceById(resourceId);
+//     resource.getEvents().forEach(event => {
+//         event.eventBackgroundColor = resource.eventBackgroundColor;
+//         event.eventBorderColor = resource.eventBorderColor;
+//         event.eventTextVolor = resource.eventTextColor;
+//     });
+// }
